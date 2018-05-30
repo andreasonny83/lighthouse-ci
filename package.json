@@ -1,0 +1,30 @@
+{
+  "name": "lighthouse-ci",
+  "version": "0.0.0",
+  "main": "index.js",
+  "description": "CLI implementation for running Lighthouse with any CI tool",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "lighthouse": "^2.9.4",
+    "minimist": "^1.2.0",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.2"
+  },
+  "keywords": [
+    "devtools",
+    "lighthouse",
+    "ci"
+  ],
+  "author": "Andrea Sonny <andreasonny83@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreasonny83/lighthouse-ci.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andreasonny83/lighthouse-ci.git/issues"
+  },
+  "homepage": "https://github.com/andreasonny83/lighthouse-ci.git#readme"
+}
