@@ -7,8 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "lighthouse": "^2.9.4",
-    "minimist": "^1.2.0",
+    "chrome-launcher": "^0.10.2",
+    "lighthouse": "^3.0.0-beta.0",
+    "meow": "^5.0.0",
     "mkdirp": "^0.5.1",
     "rimraf": "^2.6.2"
   },
@@ -17,6 +18,12 @@
     "lighthouse",
     "ci"
   ],
+  "bin": {
+    "lighthouse-ci": "src/index.js"
+  },
+  "engines": {
+    "node": ">=6"
+  },
   "author": "Andrea Sonny <andreasonny83@gmail.com>",
   "license": "MIT",
   "repository": {

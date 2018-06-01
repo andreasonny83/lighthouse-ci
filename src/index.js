@@ -1,73 +1,50 @@
-const fs = require('fs');
-const path = require('path');
+#!/usr/bin/env node
+
+/**
+ *  Copyright (c) 2018 AndreaSonny <andreasonny83@gmail.com> (https://github.com/andreasonny83)
+ *
+ * This software is released under the MIT License.
+ * https://opensource.org/licenses/MIT
+ */
+
+ 'use strict';
+const meow = require('meow');
 const minimist = require('minimist');
-const mkdirp = require('mkdirp');
-const rimraf = require('rimraf');
-const lighthouse = require('lighthouse');
-const chromeLauncher = require('lighthouse/chrome-launcher/chrome-launcher');
-const ReportGenerator = require('lighthouse/lighthouse-core/report/v2/report-generator');
+const writeReport = require('./write-report');
 
 const chromeFlags = [
   '--disable-gpu',
   '--headless',
   '--no-zygote',
   '--no-sandbox',
-  '--single-process'
+  '--single-process',
 ];
 
-const config = { output: 'json' };
-
-const launchChromeAndRunLighthouse = async(url, flags = {}, config = null) => {
-  const chrome = await chromeLauncher.launch({ chromeFlags });
-  flags.port = chrome.port;
-
-  console.log(`Running Lighthouse against ${url}\nThis may take a while.`);
-
-  const result = await lighthouse(url, flags, config);
-  await chrome.kill();
-
-  return result;
-}
-
-const createReport = results =>
-  new ReportGenerator().generateReportHtml(results);
-
-const clean = () => new Promise((resolve, reject) =>
-    rimraf('./lighthouse/', (err) => {
-      if (err) {
-        return reject();
-      }
-
-      return resolve();
-    }));
-
-const writeReport = async(url) => {
-  await clean();
-
-  const lighouseResult = await launchChromeAndRunLighthouse(url, config);
-
-  const resolvedPath = path.join(__dirname, 'reports');
-  const extension = 'html';
-  const report = createReport(lighouseResult);
-  const outputPath = path.resolve('lighthouse', `report.${extension}`);
-
-  await mkdirp('./lighthouse');
-
-  fs.writeFile(outputPath, report, (err) => {
-    if (err) {
-      console.warn('Ops! Something went wrong.');
-    }
-
-    console.log(`report written to ${outputPath}`);
-  });
+const flags = {
+  output: 'json',
 };
 
-const args = process.argv.slice(2);
-const argv = minimist(args, {
-  boolean: ['comment', 'help'],
-  default: {comment: true},
-  alias: {help: 'h'}
-});
-const testUrl = argv._[0];
+const cli = meow(`
+  Usage
+    $ lighthouse-ci <target-url>
 
-writeReport(testUrl);
+  Example
+    $ lighthouse-ci https://example.com/
+    ┌────────────────┬────────┐
+    │    (index)     │ Values │
+    ├────────────────┼────────┤
+    │  performance   │   1    │
+    │      pwa       │  0.45  │
+    │ accessibility  │  0.88  │
+    │ best-practices │  0.94  │
+    │      seo       │  0.89  │
+    └────────────────┴────────┘
+`);
+
+const testUrl = cli.input[0];
+
+// Run Google Lighthouse
+writeReport(testUrl, flags, chromeFlags)
+  .then(result => {
+    console.table(result);
+  });
