@@ -2,6 +2,8 @@
 
 > A useful wrapper around Google Lighthouse CLI
 
+<img src="screenshot-ui.png" width="700">
+
 ## Install
 
 ```

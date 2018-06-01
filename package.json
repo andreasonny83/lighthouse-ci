@@ -4,7 +4,8 @@
   "main": "index.js",
   "description": "CLI implementation for running Lighthouse with any CI tool",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "release": "np"
   },
   "dependencies": {
     "chrome-launcher": "^0.10.2",
@@ -33,5 +34,8 @@
   "bugs": {
     "url": "https://github.com/andreasonny83/lighthouse-ci.git/issues"
   },
-  "homepage": "https://github.com/andreasonny83/lighthouse-ci.git#readme"
+  "homepage": "https://github.com/andreasonny83/lighthouse-ci.git#readme",
+  "devDependencies": {
+    "np": "^3.0.1"
+  }
 }
