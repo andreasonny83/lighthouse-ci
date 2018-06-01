@@ -12,7 +12,11 @@
     "lighthouse": "^3.0.0-beta.0",
     "meow": "^5.0.0",
     "mkdirp": "^0.5.1",
+    "ora": "^2.1.0",
     "rimraf": "^2.6.2"
+  },
+  "devDependencies": {
+    "np": "^3.0.1"
   },
   "keywords": [
     "devtools",
@@ -34,8 +38,5 @@
   "bugs": {
     "url": "https://github.com/andreasonny83/lighthouse-ci.git/issues"
   },
-  "homepage": "https://github.com/andreasonny83/lighthouse-ci.git#readme",
-  "devDependencies": {
-    "np": "^3.0.1"
-  }
+  "homepage": "https://github.com/andreasonny83/lighthouse-ci.git#readme"
 }

@@ -17,8 +17,6 @@ const launchChromeAndRunLighthouse = async(url, chromeFlags, flags = {}, config 
   const chrome = await chromeLauncher.launch({ chromeFlags });
   flags.port = chrome.port;
 
-  console.log(`Running Lighthouse against ${url}\nThis may take a while.`);
-
   const result = await lighthouse(url, flags, config);
   await chrome.kill();
 
@@ -43,11 +41,11 @@ module.exports = async(url, flags, chromeFlags) => {
   const report = await createReport(lighouseResult);
   const outputPath = path.resolve('lighthouse', `report.${extension}`);
 
-  console.log('preparing to write the report');
+  // console.log('preparing to write the report');
 
   await fs.writeFileSync(outputPath, report);
 
-  console.log(`report written to ${outputPath}`);
+  // console.log(`report written to ${outputPath}`);
 
   const categoryReport = {};
 

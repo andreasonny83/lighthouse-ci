@@ -9,7 +9,8 @@
 
  'use strict';
 const meow = require('meow');
-const minimist = require('minimist');
+const ora = require('ora');
+
 const writeReport = require('./write-report');
 
 const chromeFlags = [
@@ -44,7 +45,16 @@ const cli = meow(`
 const testUrl = cli.input[0];
 
 // Run Google Lighthouse
+const msg = `Running Lighthouse against ${testUrl}. This may take a while.`;
+const spinner = ora(msg).start();
+
 writeReport(testUrl, flags, chromeFlags)
   .then(result => {
+    spinner.stop();
+
     console.table(result);
+  })
+  .catch(err => {
+    spinner.stop();
+    console.error(err);
   });
