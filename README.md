@@ -2,7 +2,9 @@
 
 > A useful wrapper around Google Lighthouse CLI
 
-<img src="screenshot-ui.png" width="700">
+[![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
+
+<img src="lighthouse-cli.gif" width="700">
 
 ## Install
 
@@ -12,25 +14,7 @@ $ npm install -g lighthouse-ci
 
 ## Usage
 
-```
-$ lighthouse-ci --help
-
-  Usage
-    $ lighthouse-ci <target-url>
-
-  Example
-    $ lighthouse-ci https://example.com/
-
-    ┌────────────────┬────────┐
-    │    (index)     │ Values │
-    ├────────────────┼────────┤
-    │  performance   │   1    │
-    │      pwa       │  0.45  │
-    │ accessibility  │  0.88  │
-    │ best-practices │  0.94  │
-    │      seo       │  0.89  │
-    └────────────────┴────────┘
-```
+<img src="screenshot-ui.png" width="800">
 
 ## Created by
 

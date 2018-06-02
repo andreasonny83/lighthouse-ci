@@ -1,10 +1,9 @@
 {
   "name": "lighthouse-ci",
   "version": "0.1.0",
-  "main": "index.js",
   "description": "CLI implementation for running Lighthouse with any CI tool",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0",
+    "test": "xo",
     "release": "np"
   },
   "dependencies": {
@@ -16,7 +15,8 @@
     "rimraf": "^2.6.2"
   },
   "devDependencies": {
-    "np": "^3.0.1"
+    "np": "^3.0.1",
+    "xo": "^0.21.1"
   },
   "keywords": [
     "devtools",
@@ -24,10 +24,21 @@
     "ci"
   ],
   "bin": {
-    "lighthouse-ci": "src/index.js"
+    "lighthouse-ci": "lib/cli.js"
   },
   "engines": {
     "node": ">=6"
+  },
+  "xo": {
+    "space": 2,
+    "esnext": true,
+    "envs": [
+      "node",
+      "es6"
+    ],
+    "rules": {
+      "comma-dangle": ["error", "only-multiline"]
+    }
   },
   "author": "Andrea Sonny <andreasonny83@gmail.com>",
   "license": "MIT",
