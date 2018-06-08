@@ -1,0 +1,17 @@
+{
+  "name": "demo-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "http-server > /dev/null &",
+    "start": "lighthouse-ci http://127.0.0.1:8080 --report",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "lighthouse-ci": "^1.0.1",
+    "http-server": "^0.11.1"
+  }
+}
