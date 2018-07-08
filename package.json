@@ -1,6 +1,6 @@
 {
   "name": "lighthouse-ci",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "CLI implementation for running Lighthouse with any CI tool",
   "scripts": {
     "test": "xo && jest",
