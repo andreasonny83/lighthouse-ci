@@ -52,10 +52,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexecus/lighthouse-ci.git"
+    "url": "git+https://github.com/andreasonny83/lighthouse-ci.git"
   },
   "bugs": {
-    "url": "https://github.com/alexecus/lighthouse-ci.git/issues"
+    "url": "https://github.com/andreasonny83/lighthouse-ci.git/issues"
   },
-  "homepage": "https://github.com/alexecus/lighthouse-ci.git#readme"
+  "homepage": "https://github.com/andreasonny83/lighthouse-ci.git#readme"
 }
