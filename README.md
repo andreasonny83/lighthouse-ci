@@ -39,7 +39,7 @@ $ lighthouse-ci --help
     $ lighthouse-ci https://example.com/ --accessibility=90 --seo=80
 
   Options
-    -r, --report                  Generate an HTML report inside a 'lighthouse' folder.
+    --report=<path>               Generate an HTML report inside a specified folder
     -s, --silent                  Run Lighthouse without printing report log.
     --score=<threshold>           Specify a score threshold for the CI to pass.
     --performance=<threshold>     Specify a minimal performance score for the CI to pass.
