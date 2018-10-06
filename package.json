@@ -3,7 +3,8 @@
   "version": "1.2.0",
   "description": "CLI implementation for running Lighthouse with any CI tool",
   "scripts": {
-    "test": "xo && jest",
+    "test": "npm run format && xo && jest",
+    "format": "prettier --write \"lib/**/*.{js,js}\"",
     "release": "np"
   },
   "dependencies": {
@@ -31,6 +32,11 @@
   "bin": {
     "lighthouse-ci": "lib/cli.js"
   },
+  "files": [
+    "lib",
+    "README.md",
+    "LICENSE"
+  ],
   "engines": {
     "node": ">=6"
   },
@@ -46,6 +52,14 @@
       "comma-dangle": [
         "error",
         "only-multiline"
+      ],
+      "object-curly-spacing": [
+        "error",
+        "always",
+        {
+          "objectsInObjects": false,
+          "arraysInObjects": false
+        }
       ]
     }
   },
