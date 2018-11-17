@@ -14,10 +14,10 @@ const meow = require('meow');
 const ora = require('ora');
 const chalk = require('chalk');
 
-const { scoreReducer } = require('./helpers');
-const { getScores, getChromeFlags } = require('./config');
-const lighthouseReporter = require('./lighthouse-reporter');
-const analizeScore = require('./score-analizer');
+const { scoreReducer } = require('../lib/helpers');
+const { getScores, getChromeFlags } = require('../lib/config');
+const lighthouseReporter = require('../lib/lighthouse-reporter');
+const analizeScore = require('../lib/score-analizer');
 
 const spinner = ora({
   color: 'yellow',
@@ -42,7 +42,8 @@ const cli = meow(
     --performance=<threshold>     Specify a minimal performance score for the CI to pass.
     --pwa=<threshold>             Specify a minimal pwa score for the CI to pass.
     --accessibility=<threshold>   Specify a minimal accessibility score for the CI to pass.
-    --best-practice=<threshold>   Specify a minimal best-practice score for the CI to pass.
+    --best-practice=<threshold>   [DEPRECATED] Specify a minimal best-practice score for the CI to pass.
+    --best-practices=<threshold>  Specify a minimal best-practice score for the CI to pass.
     --seo=<threshold>             Specify a minimal seo score for the CI to pass.
 `,
   {
@@ -60,14 +61,24 @@ const cli = meow(
       pwa: { type: 'string' },
       accessibility: { type: 'string' },
       bestPractice: { type: 'string' },
+      bestPractices: { type: 'string' },
       seo: { type: 'string' },
     },
   },
 );
 
-function init(args, cliFlags, chromeFlags) {
+const bestPractices = cli.flags.bestPractice || cli.flags.bestPractices;
+
+const flags = {
+  ...cli.flags,
+  ...(bestPractices && { 'best-practices': bestPractices }),
+};
+
+delete flags.bestPractice;
+delete flags.bestPractices;
+
+function init(args, chromeFlags) {
   const testUrl = args[0];
-  const flags = { ...cliFlags };
 
   // Run Google Lighthouse
   return lighthouseReporter(testUrl, flags, chromeFlags).then(
@@ -94,7 +105,7 @@ Promise.resolve()
     spinner.text = `Running Lighthouse on ${cli.input} ...\n`;
     spinner.start();
 
-    return init(cli.input, cli.flags, getChromeFlags());
+    return init(cli.input, getChromeFlags());
   })
   .then(({ categoryReport, silent }) => {
     spinner.stop();
@@ -116,7 +127,8 @@ Promise.resolve()
     return categoryReport;
   })
   .then(categoryReport => {
-    let thresholds = scoreReducer(cli.flags, getScores());
+    let thresholds = scoreReducer(flags, getScores());
+
     thresholds =
       Object.keys(thresholds).length === 0 ? { score: 100 } : thresholds;
 
@@ -130,8 +142,7 @@ Promise.resolve()
     }
 
     console.log(chalk.red('Failed. ❌\n'));
-    /* eslint no-throw-literal: "off" */
-    throw 'lighthouse-ci test failed.';
+    throw new Error('lighthouse-ci test failed.');
   })
   .catch(err => {
     spinner.stop();

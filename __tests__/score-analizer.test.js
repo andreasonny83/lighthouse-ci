@@ -27,48 +27,46 @@ describe('score-analizer', () => {
       seo: 0.73,
     };
 
-    expect(() => analizeScore(mockCategoryReport))
-      .toThrowError('Invalid threshold score.');
+    expect(() => analizeScore(mockCategoryReport)).toThrowError(
+      'Invalid threshold score.',
+    );
   });
 
-  it('should return false if one or more category index is below the ' +
-    'threshold', () => {
-    const threshold = 75;
-    const mockCategoryReport = {
-      performance: 7,
-      pwa: 36,
-      accessibility: 57,
-      'best-practices': 69,
-      seo: 73,
-    };
-
-    const result = analizeScore(mockCategoryReport, threshold);
-
-    expect(result).toEqual(false);
-  });
-
-  it('should return true if all the category indexes are above the threshold',
+  it(
+    'should return `false` if one or more category index is below the ' +
+      'threshold',
     () => {
-      const threshold = 70;
+      const threshold = 75;
       const mockCategoryReport = {
-        performance: 70,
-        pwa: 90,
-        accessibility: 87,
-        'best-practices': 79,
+        performance: 7,
+        pwa: 36,
+        accessibility: 57,
+        'best-practices': 69,
         seo: 73,
       };
 
       const result = analizeScore(mockCategoryReport, threshold);
 
-      expect(result).toEqual(true);
-    });
+      expect(result).toEqual(false);
+    },
+  );
 
-  it('should return true if the target categories indexes are above ' +
-    'the thresholds', () => {
-    const threshold = {
+  it('should return `true` if all the category indexes are above the threshold', () => {
+    const threshold = 70;
+    const mockCategoryReport = {
       performance: 70,
-      pwa: 80,
+      pwa: 90,
+      accessibility: 87,
+      'best-practices': 79,
+      seo: 73,
     };
+
+    const result = analizeScore(mockCategoryReport, threshold);
+
+    expect(result).toEqual(true);
+  });
+
+  describe('category thresholds', () => {
     const mockCategoryReport = {
       performance: 70,
       pwa: 90,
@@ -77,27 +75,141 @@ describe('score-analizer', () => {
       seo: 10,
     };
 
-    const result = analizeScore(mockCategoryReport, threshold);
+    it(
+      'should return `true` if the target categories indexes are above ' +
+        'the thresholds',
+      () => {
+        const threshold = {
+          performance: 70,
+          pwa: 80,
+        };
 
-    expect(result).toEqual(true);
+        const result = analizeScore(mockCategoryReport, threshold);
+
+        expect(result).toEqual(true);
+      },
+    );
+
+    it('should pass if the target categories indexes are above the "best-practices" thresholds', () => {
+      const threshold = {
+        'best-practices': 10,
+      };
+
+      const result = analizeScore(mockCategoryReport, threshold);
+
+      expect(result).toEqual(true);
+    });
+
+    it('should pass if the target categories indexes are above the "seo" thresholds', () => {
+      const threshold = {
+        seo: 10,
+      };
+
+      const result = analizeScore(mockCategoryReport, threshold);
+
+      expect(result).toEqual(true);
+    });
+
+    it('should pass if the target categories indexes are above the "performance" thresholds', () => {
+      const threshold = {
+        performance: 70,
+      };
+
+      const result = analizeScore(mockCategoryReport, threshold);
+
+      expect(result).toEqual(true);
+    });
+
+    it('should pass if the target categories indexes are above the "pwa" thresholds', () => {
+      const threshold = {
+        pwa: 90,
+      };
+
+      const result = analizeScore(mockCategoryReport, threshold);
+
+      expect(result).toEqual(true);
+    });
+
+    it('should pass if the target categories indexes are above the "accessibility" thresholds', () => {
+      const threshold = {
+        accessibility: 10,
+      };
+
+      const result = analizeScore(mockCategoryReport, threshold);
+
+      expect(result).toEqual(true);
+    });
+
+    it('should fail if the target categories indexes are above the "best-practices" thresholds', () => {
+      const threshold = {
+        'best-practices': 11,
+      };
+
+      const result = analizeScore(mockCategoryReport, threshold);
+
+      expect(result).toEqual(false);
+    });
+
+    it('should fail if the target categories indexes are above the "seo" thresholds', () => {
+      const threshold = {
+        seo: 11,
+      };
+
+      const result = analizeScore(mockCategoryReport, threshold);
+
+      expect(result).toEqual(false);
+    });
+
+    it('should fail if the target categories indexes are above the "performance" thresholds', () => {
+      const threshold = {
+        performance: 71,
+      };
+
+      const result = analizeScore(mockCategoryReport, threshold);
+
+      expect(result).toEqual(false);
+    });
+
+    it('should fail if the target categories indexes are above the "pwa" thresholds', () => {
+      const threshold = {
+        pwa: 91,
+      };
+
+      const result = analizeScore(mockCategoryReport, threshold);
+
+      expect(result).toEqual(false);
+    });
+
+    it('should fail if the target categories indexes are above the "accessibility" thresholds', () => {
+      const threshold = {
+        accessibility: 11,
+      };
+
+      const result = analizeScore(mockCategoryReport, threshold);
+
+      expect(result).toEqual(false);
+    });
   });
 
-  it('should return false if one or more target category index is below ' +
-    'the thresholds', () => {
-    const threshold = {
-      performance: 70,
-      pwa: 80,
-    };
-    const mockCategoryReport = {
-      performance: 70,
-      pwa: 79,
-      accessibility: 10,
-      'best-practices': 10,
-      seo: 10,
-    };
+  it(
+    'should return `false` if one or more target category index is below ' +
+      'the thresholds',
+    () => {
+      const threshold = {
+        performance: 70,
+        pwa: 80,
+      };
+      const mockCategoryReport = {
+        performance: 70,
+        pwa: 79,
+        accessibility: 10,
+        'best-practices': 10,
+        seo: 10,
+      };
 
-    const result = analizeScore(mockCategoryReport, threshold);
+      const result = analizeScore(mockCategoryReport, threshold);
 
-    expect(result).toEqual(false);
-  });
+      expect(result).toEqual(false);
+    },
+  );
 });
