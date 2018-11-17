@@ -45,7 +45,8 @@ $ lighthouse-ci --help
     --performance=<threshold>     Specify a minimal performance score for the CI to pass.
     --pwa=<threshold>             Specify a minimal pwa score for the CI to pass.
     --accessibility=<threshold>   Specify a minimal accessibility score for the CI to pass.
-    --best-practice=<threshold>   Specify a minimal best-practice score for the CI to pass.
+    --best-practice=<threshold>   [DEPRECATED] Use best-practices instead.
+    --best-practices=<threshold>  Specify a minimal best-practice score for the CI to pass.
     --seo=<threshold>             Specify a minimal seo score for the CI to pass.
 ```
 
