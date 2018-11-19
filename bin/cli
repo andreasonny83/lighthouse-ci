@@ -67,21 +67,36 @@ const cli = meow(
   },
 );
 
-const bestPractices = cli.flags.bestPractice || cli.flags.bestPractices;
-
-const flags = {
-  ...cli.flags,
-  ...(bestPractices && { 'best-practices': bestPractices }),
+const {
+  report, 
+  silent, 
+  s, 
+  score, 
+  performance, 
+  pwa, 
+  accessibility, 
+  bestPractice,
+  bestPractices,
+  seo, 
+  ...lighthouseFlags} = cli.flags;
+const calculatedBestPractices = bestPractice || bestPractices;
+const flags = { 
+  report, 
+  silent, 
+  s, 
+  score, 
+  performance, 
+  pwa, 
+  accessibility, 
+  ...(calculatedBestPractices && { 'best-practices': calculatedBestPractices }), 
+  seo
 };
-
-delete flags.bestPractice;
-delete flags.bestPractices;
 
 function init(args, chromeFlags) {
   const testUrl = args[0];
 
   // Run Google Lighthouse
-  return lighthouseReporter(testUrl, flags, chromeFlags).then(
+  return lighthouseReporter(testUrl, flags, chromeFlags, lighthouseFlags).then(
     async ({ categoryReport, htmlReport }) => {
       const { silent } = flags;
 
