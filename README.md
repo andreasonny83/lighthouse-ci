@@ -18,6 +18,17 @@
 $ npm install -g lighthouse-ci
 ```
 
+## Table of Contents
+
+- [Lighthouse CI](#lighthouse-ci)
+  - [Install](#install)
+  - [Table of Contents](#table-of-contents)
+  - [Usage](#usage)
+  - [CLI](#cli)
+  - [Lighthouse flags](#lighthouse-flags)
+  - [Contributors](#contributors)
+  - [License](#license)
+
 ## Usage
 
 ```sh
@@ -48,6 +59,17 @@ $ lighthouse-ci --help
     --best-practice=<threshold>   [DEPRECATED] Use best-practices instead.
     --best-practices=<threshold>  Specify a minimal best-practice score for the CI to pass.
     --seo=<threshold>             Specify a minimal seo score for the CI to pass.
+```
+
+## Lighthouse flags
+
+In addition to listed `lighthouse-ci` configuration flags, it is also possible to pass any native `lighthouse` flags.
+To see the full list of available flags, please refer to the official [Gloogle Lighthouse documentation](https://github.com/GoogleChrome/lighthouse#cli-options).
+
+eg.
+
+```sh
+$ lighthouse-ci --emulated-form-factor desktop --seo 92
 ```
 
 ## Contributors

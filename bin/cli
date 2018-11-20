@@ -45,6 +45,9 @@ const cli = meow(
     --best-practice=<threshold>   [DEPRECATED] Use best-practices instead.
     --best-practices=<threshold>  Specify a minimal best-practice score for the CI to pass.
     --seo=<threshold>             Specify a minimal seo score for the CI to pass.
+
+  In addition to listed "lighthouse-ci" configuration flags, it is also possible to pass any native "lighthouse" flag.
+  To see the full list of available flags, please refer to the official Gloogle Lighthouse documentation at https://github.com/GoogleChrome/lighthouse#cli-options
 `,
   {
     flags: {
@@ -68,27 +71,27 @@ const cli = meow(
 );
 
 const {
-  report, 
-  silent, 
-  s, 
-  score, 
-  performance, 
-  pwa, 
-  accessibility, 
+  report,
+  silent,
+  s,
+  score,
+  performance,
+  pwa,
+  accessibility,
   bestPractice,
   bestPractices,
-  seo, 
+  seo,
   ...lighthouseFlags} = cli.flags;
 const calculatedBestPractices = bestPractice || bestPractices;
-const flags = { 
-  report, 
-  silent, 
-  s, 
-  score, 
-  performance, 
-  pwa, 
-  accessibility, 
-  ...(calculatedBestPractices && { 'best-practices': calculatedBestPractices }), 
+const flags = {
+  report,
+  silent,
+  s,
+  score,
+  performance,
+  pwa,
+  accessibility,
+  ...(calculatedBestPractices && { 'best-practices': calculatedBestPractices }),
   seo
 };
 
