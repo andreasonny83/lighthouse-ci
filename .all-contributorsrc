@@ -28,6 +28,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "BenAHammond",
+      "name": "Ben Hammond",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/3516389?v=4",
+      "profile": "https://github.com/BenAHammond",
+      "contributions": [
+        "bug",
+        "code"
+      ]
     }
   ]
 }

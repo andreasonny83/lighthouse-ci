@@ -1,5 +1,5 @@
 # Lighthouse CI
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
 [![npm version](https://badge.fury.io/js/lighthouse-ci.svg)](https://badge.fury.io/js/lighthouse-ci)
 [![npm](https://img.shields.io/npm/dt/lighthouse-ci.svg)](https://www.npmjs.com/package/lighthouse-ci)
 [![Known Vulnerabilities](https://snyk.io/test/github/andreasonny83/lighthouse-ci/badge.svg?targetFile=package.json)](https://snyk.io/test/github/andreasonny83/lighthouse-ci?targetFile=package.json)
@@ -56,8 +56,8 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars0.githubusercontent.com/u/8806300?v=4" width="100px;"/><br /><sub><b>Andrea Sonny</b></sub>](https://about.me/andreasonny83)<br />[💬](#question-andreasonny83 "Answering Questions") [💻](https://github.com/andreasonny83/lighthouse-ci/commits?author=andreasonny83 "Code") [📖](https://github.com/andreasonny83/lighthouse-ci/commits?author=andreasonny83 "Documentation") | [<img src="https://avatars1.githubusercontent.com/u/1007970?v=4" width="100px;"/><br /><sub><b>Celso Santa Rosa</b></sub>](https://snap-ci.com)<br />[💻](https://github.com/andreasonny83/lighthouse-ci/commits?author=celsosantarosa "Code") |
-| :---: | :---: |
+| [<img src="https://avatars0.githubusercontent.com/u/8806300?v=4" width="100px;"/><br /><sub><b>Andrea Sonny</b></sub>](https://about.me/andreasonny83)<br />[💬](#question-andreasonny83 "Answering Questions") [💻](https://github.com/andreasonny83/lighthouse-ci/commits?author=andreasonny83 "Code") [📖](https://github.com/andreasonny83/lighthouse-ci/commits?author=andreasonny83 "Documentation") | [<img src="https://avatars1.githubusercontent.com/u/1007970?v=4" width="100px;"/><br /><sub><b>Celso Santa Rosa</b></sub>](https://snap-ci.com)<br />[💻](https://github.com/andreasonny83/lighthouse-ci/commits?author=celsosantarosa "Code") | [<img src="https://avatars3.githubusercontent.com/u/3516389?v=4" width="100px;"/><br /><sub><b>Ben Hammond</b></sub>](https://github.com/BenAHammond)<br />[🐛](https://github.com/andreasonny83/lighthouse-ci/issues?q=author%3ABenAHammond "Bug reports") [💻](https://github.com/andreasonny83/lighthouse-ci/commits?author=BenAHammond "Code") |
+| :---: | :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
