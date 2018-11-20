@@ -6,6 +6,8 @@
     "test": "npm run format && xo && jest",
     "test:watch": "jest --watchAll",
     "format": "prettier --write \"lib/**/*.{js,js}\"",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate",
     "release": "np"
   },
   "dependencies": {
@@ -19,6 +21,7 @@
   "devDependencies": {
     "@types/jest": "^23.3.2",
     "@types/ora": "^1.3.4",
+    "all-contributors-cli": "^5.4.1",
     "chalk": "^2.4.1",
     "jest": "^23.6.0",
     "np": "^3.0.4",

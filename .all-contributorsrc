@@ -1,0 +1,24 @@
+{
+  "projectName": "lighthouse-ci",
+  "projectOwner": "andreasonny83",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "contributors": [
+    {
+      "login": "andreasonny83",
+      "name": "Andrea Sonny",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/8806300?v=4",
+      "profile": "https://about.me/andreasonny83",
+      "contributions": [
+        "question",
+        "code",
+        "doc"
+      ]
+    }
+  ]
+}
