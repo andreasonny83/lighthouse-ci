@@ -19,6 +19,15 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "celsosantarosa",
+      "name": "Celso Santa Rosa",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1007970?v=4",
+      "profile": "https://snap-ci.com",
+      "contributions": [
+        "code"
+      ]
     }
   ]
 }
