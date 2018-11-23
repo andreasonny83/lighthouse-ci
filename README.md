@@ -64,7 +64,7 @@ $ lighthouse-ci --help
 ## Lighthouse flags
 
 In addition to listed `lighthouse-ci` configuration flags, it is also possible to pass any native `lighthouse` flags.
-To see the full list of available flags, please refer to the official [Gloogle Lighthouse documentation](https://github.com/GoogleChrome/lighthouse#cli-options).
+To see the full list of available flags, please refer to the official [Google Lighthouse documentation](https://github.com/GoogleChrome/lighthouse#cli-options).
 
 eg.
 
