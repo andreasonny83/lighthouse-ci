@@ -47,7 +47,7 @@ const cli = meow(
     --seo=<threshold>             Specify a minimal seo score for the CI to pass.
 
   In addition to listed "lighthouse-ci" configuration flags, it is also possible to pass any native "lighthouse" flag.
-  To see the full list of available flags, please refer to the official Gloogle Lighthouse documentation at https://github.com/GoogleChrome/lighthouse#cli-options
+  To see the full list of available flags, please refer to the official Google Lighthouse documentation at https://github.com/GoogleChrome/lighthouse#cli-options
 `,
   {
     flags: {
