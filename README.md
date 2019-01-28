@@ -26,6 +26,7 @@ $ npm install -g lighthouse-ci
   - [Usage](#usage)
   - [CLI](#cli)
   - [Lighthouse flags](#lighthouse-flags)
+    - [Chrome flags](#chrome-flags)
   - [Contributors](#contributors)
   - [License](#license)
 
@@ -64,12 +65,33 @@ $ lighthouse-ci --help
 ## Lighthouse flags
 
 In addition to listed `lighthouse-ci` configuration flags, it is also possible to pass any native `lighthouse` flags.
+
 To see the full list of available flags, please refer to the official [Google Lighthouse documentation](https://github.com/GoogleChrome/lighthouse#cli-options).
 
 eg.
 
 ```sh
-$ lighthouse-ci --emulated-form-factor desktop --seo 92
+# Launches browser, collects artifacts, saves them to disk (in `./test-report/`) and quits
+$ lighthouse-ci --gather-mode=test-report https://my.website.com
+# skips browser interaction, loads artifacts from disk (in `./test-report/`), runs audits on them, generates report
+$ lighthouse-ci --audit-mode=test-report https://my.website.com
+```
+
+### Chrome flags
+
+In addition of the lighthouse flags, you can also specify extra chrome flags
+comma separated.
+
+eg.
+
+```sh
+$ lighthouse-ci --chrome-flags=--cellular-only,--force-ui-direction=rtl https://my.website.com
+```
+
+eg.
+
+```sh
+$ lighthouse-ci --emulated-form-factor desktop --seo 92 https://my.website.com
 ```
 
 ## Contributors
