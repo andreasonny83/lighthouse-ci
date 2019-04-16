@@ -14,8 +14,13 @@ const meow = require('meow');
 const ora = require('ora');
 const chalk = require('chalk');
 
-const { scoreReducer } = require('../lib/helpers');
-const { getScores, getChromeFlags } = require('../lib/config');
+const {
+  scoreReducer
+} = require('../lib/helpers');
+const {
+  getScores,
+  getChromeFlags
+} = require('../lib/config');
 const lighthouseReporter = require('../lib/lighthouse-reporter');
 const analizeScore = require('../lib/score-analizer');
 
@@ -38,6 +43,7 @@ const cli = meow(
   Options
     -s, --silent                  Run Lighthouse without printing report log.
     --report=<path>               Generate an HTML report inside a specified folder.
+    --filename=<filename>         Specify the name of the generated HTML report file (requires --report).
     --score=<threshold>           Specify a score threshold for the CI to pass.
     --performance=<threshold>     Specify a minimal performance score for the CI to pass.
     --pwa=<threshold>             Specify a minimal pwa score for the CI to pass.
@@ -48,30 +54,49 @@ const cli = meow(
 
   In addition to listed "lighthouse-ci" configuration flags, it is also possible to pass any native "lighthouse" flag.
   To see the full list of available flags, please refer to the official Google Lighthouse documentation at https://github.com/GoogleChrome/lighthouse#cli-options
-`,
-  {
+`, {
     flags: {
       report: {
         type: 'string',
+      },
+      filename: {
+        type: 'string',
+        alias: 'f',
+        default: 'report.html',
       },
       silent: {
         type: 'boolean',
         alias: 's',
         default: false,
       },
-      score: { type: 'string' },
-      performance: { type: 'string' },
-      pwa: { type: 'string' },
-      accessibility: { type: 'string' },
-      bestPractice: { type: 'string' },
-      bestPractices: { type: 'string' },
-      seo: { type: 'string' },
+      score: {
+        type: 'string'
+      },
+      performance: {
+        type: 'string'
+      },
+      pwa: {
+        type: 'string'
+      },
+      accessibility: {
+        type: 'string'
+      },
+      bestPractice: {
+        type: 'string'
+      },
+      bestPractices: {
+        type: 'string'
+      },
+      seo: {
+        type: 'string'
+      },
     },
   },
 );
 
 const {
   report,
+  filename,
   silent,
   s,
   score,
@@ -81,18 +106,22 @@ const {
   bestPractice,
   bestPractices,
   seo,
-  ...lighthouseFlags} = cli.flags;
+  ...lighthouseFlags
+} = cli.flags;
 const calculatedBestPractices = bestPractice || bestPractices;
 const flags = {
   report,
+  filename,
   silent,
   s,
   score,
   performance,
   pwa,
   accessibility,
-  ...(calculatedBestPractices && { 'best-practices': calculatedBestPractices }),
-  seo
+  ...(calculatedBestPractices && {
+    'best-practices': calculatedBestPractices
+  }),
+  seo,
 };
 
 function init(args, chromeFlags) {
@@ -100,16 +129,24 @@ function init(args, chromeFlags) {
 
   // Run Google Lighthouse
   return lighthouseReporter(testUrl, flags, chromeFlags, lighthouseFlags).then(
-    async ({ categoryReport, htmlReport }) => {
-      const { silent } = flags;
+    async ({
+      categoryReport,
+      htmlReport
+    }) => {
+      const {
+        silent
+      } = flags;
 
       if (flags.report) {
-        const outputPath = path.resolve(flags.report, 'report.html');
+        const outputPath = path.resolve(flags.report, flags.filename);
 
         await fs.writeFileSync(outputPath, htmlReport);
       }
 
-      return { categoryReport, silent };
+      return {
+        categoryReport,
+        silent
+      };
     },
   );
 }
@@ -125,7 +162,10 @@ Promise.resolve()
 
     return init(cli.input, getChromeFlags());
   })
-  .then(({ categoryReport, silent }) => {
+  .then(({
+    categoryReport,
+    silent
+  }) => {
     spinner.stop();
 
     if (!silent) {
@@ -148,7 +188,9 @@ Promise.resolve()
     let thresholds = scoreReducer(flags, getScores());
 
     thresholds =
-      Object.keys(thresholds).length === 0 ? { score: 100 } : thresholds;
+      Object.keys(thresholds).length === 0 ? {
+        score: 100
+      } : thresholds;
 
     if (thresholds && Object.keys(thresholds).length !== 0) {
       const isScorePassing = analizeScore(categoryReport, thresholds);
