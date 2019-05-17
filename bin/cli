@@ -13,14 +13,11 @@ const path = require('path');
 const meow = require('meow');
 const ora = require('ora');
 const chalk = require('chalk');
+const updateNotifier = require('update-notifier');
+const pkg = require('../package.json');
 
-const {
-  scoreReducer
-} = require('../lib/helpers');
-const {
-  getScores,
-  getChromeFlags
-} = require('../lib/config');
+const { scoreReducer } = require('../lib/helpers');
+const { getScores, getChromeFlags } = require('../lib/config');
 const lighthouseReporter = require('../lib/lighthouse-reporter');
 const analizeScore = require('../lib/score-analizer');
 
@@ -54,7 +51,8 @@ const cli = meow(
 
   In addition to listed "lighthouse-ci" configuration flags, it is also possible to pass any native "lighthouse" flag.
   To see the full list of available flags, please refer to the official Google Lighthouse documentation at https://github.com/GoogleChrome/lighthouse#cli-options
-`, {
+`,
+  {
     flags: {
       report: {
         type: 'string',
@@ -70,25 +68,25 @@ const cli = meow(
         default: false,
       },
       score: {
-        type: 'string'
+        type: 'string',
       },
       performance: {
-        type: 'string'
+        type: 'string',
       },
       pwa: {
-        type: 'string'
+        type: 'string',
       },
       accessibility: {
-        type: 'string'
+        type: 'string',
       },
       bestPractice: {
-        type: 'string'
+        type: 'string',
       },
       bestPractices: {
-        type: 'string'
+        type: 'string',
       },
       seo: {
-        type: 'string'
+        type: 'string',
       },
     },
   },
@@ -119,7 +117,7 @@ const flags = {
   pwa,
   accessibility,
   ...(calculatedBestPractices && {
-    'best-practices': calculatedBestPractices
+    'best-practices': calculatedBestPractices,
   }),
   seo,
 };
@@ -129,13 +127,8 @@ function init(args, chromeFlags) {
 
   // Run Google Lighthouse
   return lighthouseReporter(testUrl, flags, chromeFlags, lighthouseFlags).then(
-    async ({
-      categoryReport,
-      htmlReport
-    }) => {
-      const {
-        silent
-      } = flags;
+    async ({ categoryReport, htmlReport }) => {
+      const { silent } = flags;
 
       if (flags.report) {
         const outputPath = path.resolve(flags.report, flags.filename);
@@ -145,7 +138,7 @@ function init(args, chromeFlags) {
 
       return {
         categoryReport,
-        silent
+        silent,
       };
     },
   );
@@ -153,6 +146,8 @@ function init(args, chromeFlags) {
 
 Promise.resolve()
   .then(() => {
+    updateNotifier({ pkg }).notify();
+
     if (cli.input.length === 0) {
       return cli.showHelp();
     }
@@ -162,10 +157,7 @@ Promise.resolve()
 
     return init(cli.input, getChromeFlags());
   })
-  .then(({
-    categoryReport,
-    silent
-  }) => {
+  .then(({ categoryReport, silent }) => {
     spinner.stop();
 
     if (!silent) {
@@ -188,9 +180,11 @@ Promise.resolve()
     let thresholds = scoreReducer(flags, getScores());
 
     thresholds =
-      Object.keys(thresholds).length === 0 ? {
-        score: 100
-      } : thresholds;
+      Object.keys(thresholds).length === 0
+        ? {
+            score: 100,
+          }
+        : thresholds;
 
     if (thresholds && Object.keys(thresholds).length !== 0) {
       const isScorePassing = analizeScore(categoryReport, thresholds);
