@@ -27,6 +27,7 @@ $ npm install -g lighthouse-ci
   - [CLI](#cli)
   - [Lighthouse flags](#lighthouse-flags)
     - [Chrome flags](#chrome-flags)
+  - [Configuration](#configuration)
   - [Contributors](#contributors)
   - [License](#license)
 
@@ -95,6 +96,43 @@ eg.
 ```sh
 $ lighthouse-ci --emulated-form-factor desktop --seo 92 https://my.website.com
 ```
+
+## Configuration
+
+Lighthouse CI allows you to pass a custom Lighthouse configuration file.
+Read [Lighthouse Configuration](https://github.com/GoogleChrome/lighthouse/blob/master/docs/configuration.md)
+to learn more about the configuration options available.
+
+Just generate your configuration file. For example this `config.json`
+
+```json
+{
+  "extends": "lighthouse:default",
+  "audits": [
+    "user-timings",
+    "critical-request-chains"
+  ],
+
+  "categories": {
+    "performance": {
+      "name": "Performance Metrics",
+      "description": "Sample description",
+      "audits": [
+        {"id": "user-timings", "weight": 1},
+        {"id": "critical-request-chains", "weight": 1}
+      ]
+    }
+  }
+}
+```
+
+Then run Lighthouse CI with the `--config-path` flag
+
+```sh
+$ lighthouse-ci https://example.com --report=reports --config-path=config.json
+```
+
+The generated report inside `reports` folder will follow the custom configuration listed under the `config.json` file.
 
 ## Contributors
 
