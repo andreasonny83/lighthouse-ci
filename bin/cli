@@ -32,7 +32,7 @@ const cli = meow(
 
   Example
     $ lighthouse-ci https://example.com
-    $ lighthouse-ci -s https://example.com
+    $ lighthouse-ci https://example.com -s
     $ lighthouse-ci https://example.com --score=75
     $ lighthouse-ci https://example.com --accessibility=90 --seo=80
     $ lighthouse-ci https://example.com --accessibility=90 --seo=80 --report=folder

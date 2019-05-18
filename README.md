@@ -46,23 +46,25 @@ $ lighthouse-ci --help
     $ lighthouse-ci <target-url>
 
   Example
-    $ lighthouse-ci https://example.com/
-    $ lighthouse-ci -s https://example.com/
-    $ lighthouse-ci https://example.com/ --score=75
-    $ lighthouse-ci https://example.com/ --accessibility=90 --seo=80
-    $ lighthouse-ci https://example.com/ --report=. --filename=example-report.html
+    $ lighthouse-ci https://example.com
+    $ lighthouse-ci https://example.com -s
+    $ lighthouse-ci https://example.com --score=75
+    $ lighthouse-ci https://example.com --accessibility=90 --seo=80
+    $ lighthouse-ci https://example.com --accessibility=90 --seo=80 --report=folder
+    $ lighthouse-ci https://example.com -report=folder --config-path=configs.json
 
   Options
+    -s, --silent                  Run Lighthouse without printing report log
     --report=<path>               Generate an HTML report inside a specified folder
-    --filename=<filename>         Specify the name of the generated HTML report file (requires --report).
-    -s, --silent                  Run Lighthouse without printing report log.
-    --score=<threshold>           Specify a score threshold for the CI to pass.
-    --performance=<threshold>     Specify a minimal performance score for the CI to pass.
-    --pwa=<threshold>             Specify a minimal pwa score for the CI to pass.
-    --accessibility=<threshold>   Specify a minimal accessibility score for the CI to pass.
-    --best-practice=<threshold>   [DEPRECATED] Use best-practices instead.
-    --best-practices=<threshold>  Specify a minimal best-practice score for the CI to pass.
-    --seo=<threshold>             Specify a minimal seo score for the CI to pass.
+    --filename=<filename>         Specify the name of the generated HTML report file (requires --report)
+    --config-path                 The path to the Lighthouse config JSON (read more here: https://github.com/GoogleChrome/lighthouse/blob/master/docs/configuration.md)
+    --score=<threshold>           Specify a score threshold for the CI to pass
+    --performance=<threshold>     Specify a minimal performance score for the CI to pass
+    --pwa=<threshold>             Specify a minimal pwa score for the CI to pass
+    --accessibility=<threshold>   Specify a minimal accessibility score for the CI to pass
+    --best-practice=<threshold>   [DEPRECATED] Use best-practices instead
+    --best-practices=<threshold>  Specify a minimal best-practice score for the CI to pass
+    --seo=<threshold>             Specify a minimal seo score for the CI to pass
 ```
 
 ## Lighthouse flags
