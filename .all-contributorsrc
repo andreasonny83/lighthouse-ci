@@ -50,16 +50,6 @@
       ]
     },
     {
-      "login": "9reeno",
-      "name": "Connor Markwell",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/23330646?v=4",
-      "profile": "https://github.com/9reeno",
-      "contributions": [
-        "bug",
-        "code"
-      ]
-    },
-    {
       "login": "ikigeg",
       "name": "Michael Griffiths",
       "avatar_url": "https://avatars0.githubusercontent.com/u/8846301?v=4",
@@ -67,6 +57,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "cmarkwell",
+      "name": "Connor Markwell",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/23330646?v=4",
+      "profile": "https://github.com/cmarkwell",
+      "contributions": [
+        "code"
+      ]
     }
-  ]
+  ],
+  "commitConvention": "none"
 }
