@@ -66,6 +66,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Juuro",
+      "name": "Sebastian Engel",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/559017?v=4",
+      "profile": "https://github.com/Juuro",
+      "contributions": [
+        "bug",
+        "code"
+      ]
     }
   ],
   "commitConvention": "none"
