@@ -20,6 +20,7 @@ const { scoreReducer } = require('../lib/helpers');
 const { getScores, getChromeFlags } = require('../lib/config');
 const lighthouseReporter = require('../lib/lighthouse-reporter');
 const analyzeScore = require('../lib/score-analyzer');
+const analyzeAudits = require('../lib/audits-analyzer');
 
 const spinner = ora({
   color: 'yellow',
@@ -106,6 +107,7 @@ const {
   bestPractice,
   bestPractices,
   seo,
+  audit,
   ...lighthouseFlags
 } = cli.flags;
 const calculatedBestPractices = bestPractice || bestPractices;
@@ -122,6 +124,7 @@ const flags = {
     'best-practices': calculatedBestPractices,
   }),
   seo,
+  audit,
 };
 
 function init(args, chromeFlags) {
@@ -129,7 +132,7 @@ function init(args, chromeFlags) {
 
   // Run Google Lighthouse
   return lighthouseReporter(testUrl, flags, chromeFlags, lighthouseFlags).then(
-    async ({ categoryReport, htmlReport }) => {
+    async ({ categoryReport, auditReport, htmlReport }) => {
       const { silent } = flags;
 
       if (flags.report) {
@@ -140,6 +143,7 @@ function init(args, chromeFlags) {
 
       return {
         categoryReport,
+        auditReport,
         silent,
       };
     },
@@ -159,7 +163,7 @@ Promise.resolve()
 
     return init(cli.input, getChromeFlags());
   })
-  .then(({ categoryReport, silent }) => {
+  .then(({ categoryReport, auditReport, silent }) => {
     spinner.stop();
 
     if (!silent) {
@@ -176,11 +180,10 @@ Promise.resolve()
       }
     }
 
-    return categoryReport;
+    return { categoryReport, auditReport };
   })
-  .then(categoryReport => {
+  .then(({ categoryReport, auditReport }) => {
     let thresholds = scoreReducer(flags, getScores());
-
     thresholds =
       Object.keys(thresholds).length === 0
         ? {
@@ -188,16 +191,16 @@ Promise.resolve()
           }
         : thresholds;
 
-    if (thresholds && Object.keys(thresholds).length !== 0) {
-      const isScorePassing = analyzeScore(categoryReport, thresholds);
+    const isScorePassing = analyzeScore(categoryReport, thresholds, silent);
 
-      if (isScorePassing) {
-        console.log(chalk.green('All checked scores are passing. 🎉\n'));
-        return process.exit(0);
-      }
+    const areAuditsPassing = analyzeAudits(auditReport, flags.audit, silent);
+
+    if (isScorePassing && areAuditsPassing) {
+      console.log(chalk.green('All checked scores are passing. 🎉️'));
+      return process.exit(0);
     }
 
-    console.log(chalk.red('Failed. ❌\n'));
+    console.log(chalk.red('\nFailed. ❌'));
     throw new Error('lighthouse-ci test failed.');
   })
   .catch(err => {

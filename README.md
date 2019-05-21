@@ -51,7 +51,8 @@ $ lighthouse-ci --help
     $ lighthouse-ci https://example.com --score=75
     $ lighthouse-ci https://example.com --accessibility=90 --seo=80
     $ lighthouse-ci https://example.com --accessibility=90 --seo=80 --report=folder
-    $ lighthouse-ci https://example.com -report=folder --config-path=configs.json
+    $ lighthouse-ci https://example.com --report=folder --config-path=configs.json
+    $ lighthouse-ci https://example.com --audit.interaction=1000
 
   Options
     -s, --silent                  Run Lighthouse without printing report log
