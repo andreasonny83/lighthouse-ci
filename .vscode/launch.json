@@ -25,14 +25,20 @@
                 "--throttling.throughputKbps=5120",
                 "--throttling.cpuSlowdownMultiplier=1",
 
-                "--accessibility=100",
+                "--accessibility=80",
 
                 "--audit.accesskeys=true",
                 "--audit.first-contentful-paint=3000",
                 "--audit.speed-index=5000",
-                "--audit.interactive=8000",
+                
+                "--audit.total-byte-weight=2300000",
+                "--audit.network-requests=80",
 
-                "--validate={\"\"audits\"\": [{\"\"id\"\": \"\"accesskeys\"\", \"\"expect\"\": true}, {\"\"id\"\": \"\"first-contentful-paint\"\", \"\"warn\"\": 3000, \"\"error\"\": 5000}, {\"\"id\"\": \"\"speed-index\"\", \"\"warn\"\": 5000,\"\"error\"\": 10000}, {\"\"id\"\": \"\"interactive\"\",\"\"warn\"\": 8000,\"\"error\"\": 15000}], \"\"categories\"\": [{\"\"id\"\": \"\"performance\"\",\"\"warn\"\": 0.5,\"\"error\"\": 0.25}]}",
+                "--audit.unminified-css=100",
+                "--audit.unminified-javascript=100",
+
+                "--audit.uses-responsive-images=100",
+                "--audit.uses-webp-images=100",
             ]
         },
 
@@ -56,8 +62,6 @@
                 "--throttling.rttMs=100",
                 "--throttling.throughputKbps=5120",
                 "--throttling.cpuSlowdownMultiplier=1",
-
-                "--v={\"\"audits\"\": [{\"\"id\"\": \"\"accesskeys\"\", \"\"expect\"\": true}, {\"\"id\"\": \"\"first-contentful-paint\"\", \"\"warn\"\": 3000, \"\"error\"\": 5000}, {\"\"id\"\": \"\"speed-index\"\", \"\"warn\"\": 5000,\"\"error\"\": 10000}, {\"\"id\"\": \"\"interactive\"\",\"\"warn\"\": 8000,\"\"error\"\": 15000}], \"\"categories\"\": [{\"\"id\"\": \"\"performance\"\",\"\"warn\"\": 0.5,\"\"error\"\": 0.25}]}",
             ]
         }
     ]

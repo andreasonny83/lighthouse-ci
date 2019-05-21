@@ -196,7 +196,7 @@ Promise.resolve()
     const areAuditsPassing = analyzeAudits(auditReport, flags.audit, silent);
 
     if (isScorePassing && areAuditsPassing) {
-      console.log(chalk.green('All checked scores are passing. 🎉️'));
+      console.log(chalk.green('\nAll checked scores are passing. 🎉️'));
       return process.exit(0);
     }
 
