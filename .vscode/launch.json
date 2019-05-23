@@ -1,68 +1,106 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "LH-CI-Mobile",
-            "program": "${workspaceFolder}\\bin\\cli",
-            "cwd": "${workspaceFolder}",
-            "args": [
-                "https://example.com/",
-                "--report=report",
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "LH-CI-Mobile",
+      "program": "${workspaceFolder}\\bin\\cli",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "https://example.com/",
+        "--report=report",
 
-                "--only-categories=performance",
-                "--only-categories=seo",
-                "--only-categories=best-practices",
-                "--only-categories=accessibility",
+        "--only-categories=performance",
+        "--only-categories=seo",
+        "--only-categories=best-practices",
+        "--only-categories=accessibility",
 
-                "--emulated-form-factor=mobile",
-                "--throttling-method=simulate",
-                "--throttling.rttMs=100",
-                "--throttling.throughputKbps=5120",
-                "--throttling.cpuSlowdownMultiplier=1",
+        "--emulated-form-factor=mobile",
+        "--throttling-method=simulate",
+        "--throttling.rttMs=100",
+        "--throttling.throughputKbps=5120",
+        "--throttling.cpuSlowdownMultiplier=1",
 
-                "--accessibility=80",
+        "--accessility=80",
 
-                "--audit.accesskeys=true",
-                "--audit.first-contentful-paint=3000",
-                "--audit.speed-index=5000",
-                
-                "--audit.total-byte-weight=2300000",
-                "--audit.network-requests=80",
+        "--audit.accesskeys=true",
+        "--audit.first-contentful-paint=3000",
+        "--audit.speed-index=5000",
 
-                "--audit.unminified-css=100",
-                "--audit.unminified-javascript=100",
+        "--audit.total-byte-weight=2300000",
+        "--audit.network-requests=80",
 
-                "--audit.uses-responsive-images=100",
-                "--audit.uses-webp-images=100",
-            ]
-        },
+        "--audit.unminified-css=100",
+        "--audit.unminified-javascript=100",
 
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "LH-CI-Desktop",
-            "program": "${workspaceFolder}\\bin\\cli",
-            "cwd": "${workspaceFolder}",
-            "args": [
-                "https://example.com/",
-                "--report=report",
+        "--audit.uses-responsive-images=100",
+        "--audit.uses-webp-images=100"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "LH-CI-Mobile-Json",
+      "program": "${workspaceFolder}\\bin\\cli",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "https://example.com/",
+        "--report=report",
+        "--json-output=true",
 
-                "--only-categories=performance",
-                "--only-categories=seo",
-                "--only-categories=best-practices",
-                "--only-categories=accessibility",
+        "--only-categories=performance",
+        "--only-categories=seo",
+        "--only-categories=best-practices",
+        "--only-categories=accessibility",
 
-                "--emulated-form-factor=desktop",
-                "--throttling-method=simulate",
-                "--throttling.rttMs=100",
-                "--throttling.throughputKbps=5120",
-                "--throttling.cpuSlowdownMultiplier=1",
-            ]
-        }
-    ]
+        "--emulated-form-factor=mobile",
+        "--throttling-method=simulate",
+        "--throttling.rttMs=100",
+        "--throttling.throughputKbps=5120",
+        "--throttling.cpuSlowdownMultiplier=1",
+
+        "--accessibility=80",
+
+        "--audit.accesskeys=true",
+        "--audit.first-contentful-paint=3000",
+        "--audit.speed-index=5000",
+
+        "--audit.total-byte-weight=2300000",
+        "--audit.network-requests=80",
+
+        "--audit.unminified-css=100",
+        "--audit.unminified-javascript=100",
+
+        "--audit.uses-responsive-images=100",
+        "--audit.uses-webp-images=100"
+      ]
+    },
+
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "LH-CI-Desktop",
+      "program": "${workspaceFolder}\\bin\\cli",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "https://example.com/",
+        "--report=report",
+
+        "--only-categories=performance",
+        "--only-categories=seo",
+        "--only-categories=best-practices",
+        "--only-categories=accessibility",
+
+        "--emulated-form-factor=desktop",
+        "--throttling-method=simulate",
+        "--throttling.rttMs=100",
+        "--throttling.throughputKbps=5120",
+        "--throttling.cpuSlowdownMultiplier=1"
+      ]
+    }
+  ]
 }

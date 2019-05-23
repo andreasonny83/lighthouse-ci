@@ -43,6 +43,7 @@ const cli = meow(
     -s, --silent                  Run Lighthouse without printing report log
     --report=<path>               Generate an HTML report inside a specified folder
     --filename=<filename>         Specify the name of the generated HTML report file (requires --report)
+    -json, --jsonOutput           Generate JSON report in addition to HTML (requires --report)
     --config-path                 The path to the Lighthouse config JSON (read more here: https://github.com/GoogleChrome/lighthouse/blob/master/docs/configuration.md)
     --score=<threshold>           Specify a score threshold for the CI to pass
     --performance=<threshold>     Specify a minimal performance score for the CI to pass
@@ -64,6 +65,11 @@ const cli = meow(
         type: 'string',
         alias: 'f',
         default: 'report.html',
+      },
+      jsonOutput: {
+        type: 'boolean',
+        alias: 'json',
+        default: false,
       },
       silent: {
         type: 'boolean',
@@ -98,6 +104,8 @@ const cli = meow(
 const {
   report,
   filename,
+  json,
+  jsonOutput,
   silent,
   s,
   score,
@@ -114,6 +122,8 @@ const calculatedBestPractices = bestPractice || bestPractices;
 const flags = {
   report,
   filename,
+  json,
+  jsonOutput,
   silent,
   s,
   score,
@@ -132,13 +142,17 @@ function init(args, chromeFlags) {
 
   // Run Google Lighthouse
   return lighthouseReporter(testUrl, flags, chromeFlags, lighthouseFlags).then(
-    async ({ categoryReport, auditReport, htmlReport }) => {
+    async ({ categoryReport, auditReport, htmlReport, jsonReport }) => {
       const { silent } = flags;
 
       if (flags.report) {
         const outputPath = path.resolve(flags.report, flags.filename);
-
         await fs.writeFileSync(outputPath, htmlReport);
+
+        if (flags.jsonOutput && jsonReport) {
+          const jsonOutputPath = outputPath.replace('.html', '.json');
+          await fs.writeFileSync(jsonOutputPath, jsonReport);
+        }
       }
 
       return {
