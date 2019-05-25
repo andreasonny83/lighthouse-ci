@@ -19,7 +19,7 @@ const pkg = require('../package.json');
 const { scoreReducer } = require('../lib/helpers');
 const { getScores, getChromeFlags } = require('../lib/config');
 const lighthouseReporter = require('../lib/lighthouse-reporter');
-const analizeScore = require('../lib/score-analizer');
+const analyzeScore = require('../lib/score-analyzer');
 
 const spinner = ora({
   color: 'yellow',
@@ -189,7 +189,7 @@ Promise.resolve()
         : thresholds;
 
     if (thresholds && Object.keys(thresholds).length !== 0) {
-      const isScorePassing = analizeScore(categoryReport, thresholds);
+      const isScorePassing = analyzeScore(categoryReport, thresholds);
 
       if (isScorePassing) {
         console.log(chalk.green('All checked scores are passing. 🎉\n'));

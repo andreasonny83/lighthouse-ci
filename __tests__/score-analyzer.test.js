@@ -5,9 +5,9 @@
  * https://opensource.org/licenses/MIT
  */
 
-const analizeScore = require('../lib/score-analizer');
+const analyzeScore = require('../lib/score-analyzer');
 
-describe('score-analizer', () => {
+describe('score-analyzer', () => {
   const processExit = process.exit;
 
   beforeEach(() => {
@@ -27,7 +27,7 @@ describe('score-analizer', () => {
       seo: 0.73,
     };
 
-    expect(() => analizeScore(mockCategoryReport)).toThrowError(
+    expect(() => analyzeScore(mockCategoryReport)).toThrowError(
       'Invalid threshold score.',
     );
   });
@@ -45,7 +45,7 @@ describe('score-analizer', () => {
         seo: 73,
       };
 
-      const result = analizeScore(mockCategoryReport, threshold);
+      const result = analyzeScore(mockCategoryReport, threshold);
 
       expect(result).toEqual(false);
     },
@@ -61,7 +61,7 @@ describe('score-analizer', () => {
       seo: 73,
     };
 
-    const result = analizeScore(mockCategoryReport, threshold);
+    const result = analyzeScore(mockCategoryReport, threshold);
 
     expect(result).toEqual(true);
   });
@@ -84,7 +84,7 @@ describe('score-analizer', () => {
           pwa: 80,
         };
 
-        const result = analizeScore(mockCategoryReport, threshold);
+        const result = analyzeScore(mockCategoryReport, threshold);
 
         expect(result).toEqual(true);
       },
@@ -95,7 +95,7 @@ describe('score-analizer', () => {
         'best-practices': 10,
       };
 
-      const result = analizeScore(mockCategoryReport, threshold);
+      const result = analyzeScore(mockCategoryReport, threshold);
 
       expect(result).toEqual(true);
     });
@@ -105,7 +105,7 @@ describe('score-analizer', () => {
         seo: 10,
       };
 
-      const result = analizeScore(mockCategoryReport, threshold);
+      const result = analyzeScore(mockCategoryReport, threshold);
 
       expect(result).toEqual(true);
     });
@@ -115,7 +115,7 @@ describe('score-analizer', () => {
         performance: 70,
       };
 
-      const result = analizeScore(mockCategoryReport, threshold);
+      const result = analyzeScore(mockCategoryReport, threshold);
 
       expect(result).toEqual(true);
     });
@@ -125,7 +125,7 @@ describe('score-analizer', () => {
         pwa: 90,
       };
 
-      const result = analizeScore(mockCategoryReport, threshold);
+      const result = analyzeScore(mockCategoryReport, threshold);
 
       expect(result).toEqual(true);
     });
@@ -135,7 +135,7 @@ describe('score-analizer', () => {
         accessibility: 10,
       };
 
-      const result = analizeScore(mockCategoryReport, threshold);
+      const result = analyzeScore(mockCategoryReport, threshold);
 
       expect(result).toEqual(true);
     });
@@ -145,7 +145,7 @@ describe('score-analizer', () => {
         'best-practices': 11,
       };
 
-      const result = analizeScore(mockCategoryReport, threshold);
+      const result = analyzeScore(mockCategoryReport, threshold);
 
       expect(result).toEqual(false);
     });
@@ -155,7 +155,7 @@ describe('score-analizer', () => {
         seo: 11,
       };
 
-      const result = analizeScore(mockCategoryReport, threshold);
+      const result = analyzeScore(mockCategoryReport, threshold);
 
       expect(result).toEqual(false);
     });
@@ -165,7 +165,7 @@ describe('score-analizer', () => {
         performance: 71,
       };
 
-      const result = analizeScore(mockCategoryReport, threshold);
+      const result = analyzeScore(mockCategoryReport, threshold);
 
       expect(result).toEqual(false);
     });
@@ -175,7 +175,7 @@ describe('score-analizer', () => {
         pwa: 91,
       };
 
-      const result = analizeScore(mockCategoryReport, threshold);
+      const result = analyzeScore(mockCategoryReport, threshold);
 
       expect(result).toEqual(false);
     });
@@ -185,7 +185,7 @@ describe('score-analizer', () => {
         accessibility: 11,
       };
 
-      const result = analizeScore(mockCategoryReport, threshold);
+      const result = analyzeScore(mockCategoryReport, threshold);
 
       expect(result).toEqual(false);
     });
@@ -207,7 +207,7 @@ describe('score-analizer', () => {
         seo: 10,
       };
 
-      const result = analizeScore(mockCategoryReport, threshold);
+      const result = analyzeScore(mockCategoryReport, threshold);
 
       expect(result).toEqual(false);
     },
