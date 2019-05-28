@@ -28,6 +28,7 @@ $ npm install -g lighthouse-ci
   - [Lighthouse flags](#lighthouse-flags)
     - [Chrome flags](#chrome-flags)
   - [Configuration](#configuration)
+  - [Performance Budgets](#performance-budget)
   - [Contributors](#contributors)
   - [License](#license)
 
@@ -51,13 +52,14 @@ $ lighthouse-ci --help
     $ lighthouse-ci https://example.com --score=75
     $ lighthouse-ci https://example.com --accessibility=90 --seo=80
     $ lighthouse-ci https://example.com --accessibility=90 --seo=80 --report=folder
-    $ lighthouse-ci https://example.com -report=folder --config-path=configs.json
+    $ lighthouse-ci https://example.com --report=folder --config-path=configs.json
 
   Options
     -s, --silent                  Run Lighthouse without printing report log
     --report=<path>               Generate an HTML report inside a specified folder
     --filename=<filename>         Specify the name of the generated HTML report file (requires --report)
     --config-path                 The path to the Lighthouse config JSON (read more here: https://github.com/GoogleChrome/lighthouse/blob/master/docs/configuration.md)
+    --budget-path                 The path to the Lighthouse budgets config JSON (read more here: https://developers.google.com/web/tools/lighthouse/audits/budgets)
     --score=<threshold>           Specify a score threshold for the CI to pass
     --performance=<threshold>     Specify a minimal performance score for the CI to pass
     --pwa=<threshold>             Specify a minimal pwa score for the CI to pass
@@ -135,6 +137,55 @@ $ lighthouse-ci https://example.com --report=reports --config-path=config.json
 ```
 
 The generated report inside `reports` folder will follow the custom configuration listed under the `config.json` file.
+
+## Performance Budget
+
+Lighthouse CI allows you to pass a performance budget configuration file (see [Lighthouse Budgets](https://developers.google.com/web/tools/lighthouse/audits/budgets)).
+There are two options to pass performance budget configs:
+
+#### Option 1. 
+Add configurations to your `config.json` file like and use instructions above.
+``` json
+{
+  "extends": "lighthouse:default",
+  "settings": {
+    "budgets": [
+      {
+        "resourceCounts": [
+          { "resourceType": "total", "budget": 10 },
+          ...
+        ],
+        "resourceSizes": [
+          { "resourceType": "total", "budget": 100 },
+          ...
+        ]
+      }
+    ]
+  }
+}
+```
+#### Option 2.
+Generate `budget.json` with content like:
+``` json
+[
+  {
+    "resourceCounts": [
+      { "resourceType": "total", "budget": 10 },
+      ...
+    ],
+    "resourceSizes": [
+      { "resourceType": "total", "budget": 100 },
+      ...
+    ]
+  }
+]
+```
+
+Then run Lighthouse CI with the `--budget-path` flag
+
+```sh
+$ lighthouse-ci https://example.com --report=reports --budget-path=budget.json
+```
 
 ## Contributors
 
