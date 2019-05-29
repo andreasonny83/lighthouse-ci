@@ -59,6 +59,7 @@ $ lighthouse-ci --help
     -s, --silent                  Run Lighthouse without printing report log
     --report=<path>               Generate an HTML report inside a specified folder
     --filename=<filename>         Specify the name of the generated HTML report file (requires --report)
+    -json, --jsonReport           Generate JSON report in addition to HTML (requires --report)
     --config-path                 The path to the Lighthouse config JSON (read more here: https://github.com/GoogleChrome/lighthouse/blob/master/docs/configuration.md)
     --budget-path                 The path to the Lighthouse budgets config JSON (read more here: https://developers.google.com/web/tools/lighthouse/audits/budgets)
     --score=<threshold>           Specify a score threshold for the CI to pass
