@@ -1,4 +1,5 @@
 # Lighthouse CI
+[![Build Status](https://travis-ci.com/andreasonny83/lighthouse-ci.svg?branch=master)](https://travis-ci.com/andreasonny83/lighthouse-ci)
 [![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors)
 [![npm version](https://badge.fury.io/js/lighthouse-ci.svg)](https://badge.fury.io/js/lighthouse-ci)
 [![npm](https://img.shields.io/npm/dt/lighthouse-ci.svg)](https://www.npmjs.com/package/lighthouse-ci)
