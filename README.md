@@ -69,6 +69,7 @@ $ lighthouse-ci --help
     --best-practice=<threshold>   [DEPRECATED] Use best-practices instead
     --best-practices=<threshold>  Specify a minimal best-practice score for the CI to pass
     --seo=<threshold>             Specify a minimal seo score for the CI to pass
+    --budget.<counts|sizes>.<type>    Specify individual budget threshold (if --budget-path not set)
 ```
 
 ## Lighthouse flags
@@ -143,7 +144,7 @@ The generated report inside `reports` folder will follow the custom configuratio
 ## Performance Budget
 
 Lighthouse CI allows you to pass a performance budget configuration file (see [Lighthouse Budgets](https://developers.google.com/web/tools/lighthouse/audits/budgets)).
-There are two options to pass performance budget configs:
+There are several options to pass performance budget configs:
 
 #### Option 1. 
 Add configurations to your `config.json` file like and use instructions above.
@@ -187,6 +188,13 @@ Then run Lighthouse CI with the `--budget-path` flag
 
 ```sh
 $ lighthouse-ci https://example.com --report=reports --budget-path=budget.json
+```
+
+#### Option 3.
+Pass individual parameters via CLI
+
+```sh
+$ lighthouse-ci https://example.com --report=reports --budget.counts.total=20  --budget.sizes.fonts=100000
 ```
 
 ## Contributors

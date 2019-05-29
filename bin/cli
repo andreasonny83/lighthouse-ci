@@ -54,6 +54,7 @@ const cli = meow(
     --best-practices=<threshold>  Specify a minimal best-practice score for the CI to pass
     --seo=<threshold>             Specify a minimal seo score for the CI to pass
     --fail-on-budgets             Specify CI should fail if budgets are exceeded
+    --budget.<counts|sizes>.<type>    Specify individual budget threshold (if --budget-path not set)
 
   In addition to listed "lighthouse-ci" configuration flags, it is also possible to pass any native "lighthouse" flag
   To see the full list of available flags, please refer to the official Google Lighthouse documentation at https://github.com/GoogleChrome/lighthouse#cli-options
@@ -103,6 +104,10 @@ const cli = meow(
         type: 'boolean',
         default: false,
       },
+      budget: {
+        type: 'object',
+        default: false,
+      },
     },
   },
 );
@@ -124,6 +129,7 @@ const {
   failOnBudgets,
   ...lighthouseFlags
 } = cli.flags;
+
 const calculatedBestPractices = bestPractice || bestPractices;
 const flags = {
   report,

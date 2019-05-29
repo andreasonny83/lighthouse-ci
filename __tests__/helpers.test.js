@@ -1,6 +1,14 @@
 const mkdirp = require('mkdirp');
 const rimraf = require('rimraf');
-const { clean, createDir, scoreReducer } = require('../lib/helpers');
+const {
+  clean,
+  createDir,
+  scoreReducer,
+  createDefaultConfig,
+  getOwnProps,
+  convertToBudgetList,
+  convertToResourceKey,
+} = require('../lib/helpers');
 
 jest.mock('rimraf');
 jest.mock('mkdirp');
@@ -120,6 +128,108 @@ describe('helpers', () => {
 
       // Assert
       expect(res).toEqual(expectedRes);
+    });
+  });
+
+  describe('getOwnProps', () => {
+    it('should return all own props', () => {
+      // Arrange
+      const expectedProp = 'foo';
+      const mockObj = { foo: 0 };
+
+      // Act
+      const res = getOwnProps(mockObj);
+
+      // Assert
+      expect(res).not.toBeNull();
+      expect(res).toContain(expectedProp);
+      expect(res).toHaveLength(1);
+    });
+
+    it('should not return inherited props', () => {
+      // Arrange
+      const expectedProp = 'foo';
+
+      const Func = function () {
+        this.foo = 1;
+      };
+
+      const input = new Func();
+
+      Func.prototype.bar = 2;
+
+      // Act
+      const res = getOwnProps(input);
+
+      // Assert
+      expect(res).not.toBeNull();
+      expect(res).toContain(expectedProp);
+      expect(res).toHaveLength(1);
+    });
+  });
+
+  describe('createDefaultConfig', () => {
+    it('should not override existing config', () => {
+      // Arrange
+      const expectedConfig = { foo: 1, bar: 2 };
+
+      // Act
+      const res = createDefaultConfig(expectedConfig);
+
+      // Assert
+      expect(res).toEqual(expectedConfig);
+    });
+
+    it('should set `extends` and `settings`', () => {
+      // Arrange
+      const expectedExtends = 'lighthouse:default';
+
+      // Act
+      const res = createDefaultConfig();
+
+      // Assert
+      expect(res.extends).toEqual(expectedExtends);
+      expect(res.settings).not.toBeNull();
+    });
+  });
+
+  describe('convertToBudgetList', () => {
+    it('Should return list of objects in specified format', () => {
+      // Arrange
+      const expected = [
+        {
+          resourceType: 'script',
+          budget: 1,
+        },
+        {
+          resourceType: 'total',
+          budget: 2,
+        },
+      ];
+
+      const input = { script: 1, total: 2 };
+
+      // Act
+      const res = convertToBudgetList(input);
+
+      // Assert
+      expect(res).toHaveLength(2);
+      expect(res).toEqual(expected);
+    });
+  });
+
+  describe('convertToResourceKey', () => {
+    it('Should convert `sizes` to `resourceSizes`', () => {
+      // Arrange
+      const expected = 'resourceSizes';
+
+      const input = 'sizes';
+
+      // Act
+      const res = convertToResourceKey(input);
+
+      // Assert
+      expect(res).toEqual(expected);
     });
   });
 });
