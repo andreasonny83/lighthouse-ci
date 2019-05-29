@@ -20,6 +20,7 @@ const { scoreReducer } = require('../lib/helpers');
 const { getScores, getChromeFlags } = require('../lib/config');
 const lighthouseReporter = require('../lib/lighthouse-reporter');
 const analyzeScore = require('../lib/score-analyzer');
+const analyzeBudgets = require('../lib/budgets-analyzer');
 
 const spinner = ora({
   color: 'yellow',
@@ -43,6 +44,7 @@ const cli = meow(
     --report=<path>               Generate an HTML report inside a specified folder
     --filename=<filename>         Specify the name of the generated HTML report file (requires --report)
     --config-path                 The path to the Lighthouse config JSON (read more here: https://github.com/GoogleChrome/lighthouse/blob/master/docs/configuration.md)
+    --budget-path                 The path to the Lighthouse budgets config JSON (read more here: https://developers.google.com/web/tools/lighthouse/audits/budgets)
     --score=<threshold>           Specify a score threshold for the CI to pass
     --performance=<threshold>     Specify a minimal performance score for the CI to pass
     --pwa=<threshold>             Specify a minimal pwa score for the CI to pass
@@ -50,6 +52,7 @@ const cli = meow(
     --best-practice=<threshold>   [DEPRECATED] Use best-practices instead
     --best-practices=<threshold>  Specify a minimal best-practice score for the CI to pass
     --seo=<threshold>             Specify a minimal seo score for the CI to pass
+    --fail-on-budgets             Specify CI should fail if budgets are exceeded
 
   In addition to listed "lighthouse-ci" configuration flags, it is also possible to pass any native "lighthouse" flag
   To see the full list of available flags, please refer to the official Google Lighthouse documentation at https://github.com/GoogleChrome/lighthouse#cli-options
@@ -90,6 +93,10 @@ const cli = meow(
       seo: {
         type: 'string',
       },
+      failOnBudgets: {
+        type: 'boolean',
+        default: false,
+      },
     },
   },
 );
@@ -106,6 +113,7 @@ const {
   bestPractice,
   bestPractices,
   seo,
+  failOnBudgets,
   ...lighthouseFlags
 } = cli.flags;
 const calculatedBestPractices = bestPractice || bestPractices;
@@ -122,6 +130,7 @@ const flags = {
     'best-practices': calculatedBestPractices,
   }),
   seo,
+  failOnBudgets,
 };
 
 function init(args, chromeFlags) {
@@ -129,7 +138,7 @@ function init(args, chromeFlags) {
 
   // Run Google Lighthouse
   return lighthouseReporter(testUrl, flags, chromeFlags, lighthouseFlags).then(
-    async ({ categoryReport, htmlReport }) => {
+    async ({ categoryReport, budgetsReport, htmlReport }) => {
       const { silent } = flags;
 
       if (flags.report) {
@@ -140,6 +149,7 @@ function init(args, chromeFlags) {
 
       return {
         categoryReport,
+        budgetsReport,
         silent,
       };
     },
@@ -159,7 +169,7 @@ Promise.resolve()
 
     return init(cli.input, getChromeFlags());
   })
-  .then(({ categoryReport, silent }) => {
+  .then(({ categoryReport, budgetsReport, silent }) => {
     spinner.stop();
 
     if (!silent) {
@@ -174,11 +184,23 @@ Promise.resolve()
           )}`,
         );
       }
+
+      for (const budget in budgetsReport) {
+        if (!budgetsReport[budget]) {
+          continue;
+        }
+
+        if (budgetsReport[budget]) {
+          console.log(
+            `Budget '${chalk.yellow(budget)}' exceeded by ${chalk.yellow(budgetsReport[budget])}`,
+          );
+        }
+      }
     }
 
-    return categoryReport;
+    return { categoryReport, budgetsReport };
   })
-  .then(categoryReport => {
+  .then(({ categoryReport, budgetsReport }) => {
     let thresholds = scoreReducer(flags, getScores());
 
     thresholds =
@@ -190,9 +212,10 @@ Promise.resolve()
 
     if (thresholds && Object.keys(thresholds).length !== 0) {
       const isScorePassing = analyzeScore(categoryReport, thresholds);
+      const areBudgetsPassing = analyzeBudgets(budgetsReport, failOnBudgets);
 
-      if (isScorePassing) {
-        console.log(chalk.green('All checked scores are passing. 🎉\n'));
+      if (isScorePassing && areBudgetsPassing) {
+        console.log(chalk.green('All checks are passing. 🎉\n'));
         return process.exit(0);
       }
     }
