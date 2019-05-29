@@ -76,6 +76,16 @@
         "bug",
         "code"
       ]
+    },
+    {
+      "login": "asmagin",
+      "name": "Alex Smagin",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1803342?v=4",
+      "profile": "https://asmagin.com/",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
     }
   ],
   "commitConvention": "none"
