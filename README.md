@@ -29,7 +29,13 @@ $ npm install -g lighthouse-ci
   - [Lighthouse flags](#lighthouse-flags)
     - [Chrome flags](#chrome-flags)
   - [Configuration](#configuration)
-  - [Performance Budgets](#performance-budget)
+  - [Performance Budget](#performance-budget)
+      - [Option 1.](#option-1)
+      - [Option 2.](#option-2)
+      - [Option 3.](#option-3)
+  - [How to](#how-to)
+    - [Test a page that requires authentication](#test-a-page-that-requires-authentication)
+    - [Wait for post-load JavaScript to execute before ending a trace](#wait-for-post-load-javascript-to-execute-before-ending-a-trace)
   - [Contributors](#contributors)
   - [License](#license)
 
@@ -146,7 +152,7 @@ The generated report inside `reports` folder will follow the custom configuratio
 Lighthouse CI allows you to pass a performance budget configuration file (see [Lighthouse Budgets](https://developers.google.com/web/tools/lighthouse/audits/budgets)).
 There are several options to pass performance budget configs:
 
-#### Option 1. 
+#### Option 1.
 Add configurations to your `config.json` file like and use instructions above.
 ``` json
 {
@@ -195,6 +201,52 @@ Pass individual parameters via CLI
 
 ```sh
 $ lighthouse-ci https://example.com --report=reports --budget.counts.total=20  --budget.sizes.fonts=100000
+```
+
+## How to
+
+### Test a page that requires authentication
+
+By default `lighthouse-cli` is just creating the report against a specific URL without letting the engineer to interact with the browser.
+Sometimes, however, the page for which you want to generate the report, requires the user to be authenticated.
+Depending on the authentication mechanism, you can inject extra header information into the page.
+
+```sh
+lighthouse-ci https://example.com --extra-headers=./extra-headers.js
+```
+
+Where `extra-headers.json` contains:
+
+```js
+module.exports = {
+  Authorization: 'Bearer MyAccessToken',
+  Cookie: "user=MySecretCookie;"
+};
+```
+
+### Wait for post-load JavaScript to execute before ending a trace
+
+Your website might require extra time to load and execute all the JavaScript logic.
+It is possible to let LightHouse wait for a certain amount of time, before ending a trace,
+by providing a `pauseAfterLoadMs` value to a custom configuration file.
+
+eg.
+
+```sh
+lighthouse-ci https://example.com --config-path ./config.json
+```
+
+Where `config.json` contains:
+
+```json
+{
+  "extends": "lighthouse:default",
+  "passes": [{
+    "recordTrace": true,
+    "pauseAfterLoadMs": 5000,
+    "networkQuietThresholdMs": 5000
+  }]
+}
 ```
 
 ## Contributors
