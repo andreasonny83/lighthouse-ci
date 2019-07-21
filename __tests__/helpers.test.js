@@ -52,10 +52,7 @@ describe('helpers', () => {
 
       // Assert
       expect(res).resolves.toEqual();
-      expect(rimraf).toHaveBeenCalledWith(
-        expectedFolderName,
-        expect.any(Function),
-      );
+      expect(rimraf).toHaveBeenCalledWith(expectedFolderName, expect.any(Function));
     });
   });
 
@@ -93,10 +90,7 @@ describe('helpers', () => {
 
       // Assert
       expect(res).resolves.toEqual();
-      expect(mkdirp).toHaveBeenCalledWith(
-        expectedFolderName,
-        expect.any(Function),
-      );
+      expect(mkdirp).toHaveBeenCalledWith(expectedFolderName, expect.any(Function));
     });
   });
 

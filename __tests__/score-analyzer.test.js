@@ -27,29 +27,23 @@ describe('score-analyzer', () => {
       seo: 0.73,
     };
 
-    expect(() => analyzeScore(mockCategoryReport)).toThrowError(
-      'Invalid threshold score.',
-    );
+    expect(() => analyzeScore(mockCategoryReport)).toThrowError('Invalid threshold score.');
   });
 
-  it(
-    'should return `false` if one or more category index is below the ' +
-      'threshold',
-    () => {
-      const threshold = 75;
-      const mockCategoryReport = {
-        performance: 7,
-        pwa: 36,
-        accessibility: 57,
-        'best-practices': 69,
-        seo: 73,
-      };
+  it('should return `false` if one or more category index is below the threshold', () => {
+    const threshold = 75;
+    const mockCategoryReport = {
+      performance: 7,
+      pwa: 36,
+      accessibility: 57,
+      'best-practices': 69,
+      seo: 73,
+    };
 
-      const result = analyzeScore(mockCategoryReport, threshold);
+    const result = analyzeScore(mockCategoryReport, threshold);
 
-      expect(result).toEqual(false);
-    },
-  );
+    expect(result).toEqual(false);
+  });
 
   it('should return `true` if all the category indexes are above the threshold', () => {
     const threshold = 70;
@@ -75,20 +69,16 @@ describe('score-analyzer', () => {
       seo: 10,
     };
 
-    it(
-      'should return `true` if the target categories indexes are above ' +
-        'the thresholds',
-      () => {
-        const threshold = {
-          performance: 70,
-          pwa: 80,
-        };
+    it('should return `true` if the target categories indexes are above the thresholds', () => {
+      const threshold = {
+        performance: 70,
+        pwa: 80,
+      };
 
-        const result = analyzeScore(mockCategoryReport, threshold);
+      const result = analyzeScore(mockCategoryReport, threshold);
 
-        expect(result).toEqual(true);
-      },
-    );
+      expect(result).toEqual(true);
+    });
 
     it('should pass if the target categories indexes are above the "best-practices" thresholds', () => {
       const threshold = {
@@ -191,25 +181,21 @@ describe('score-analyzer', () => {
     });
   });
 
-  it(
-    'should return `false` if one or more target category index is below ' +
-      'the thresholds',
-    () => {
-      const threshold = {
-        performance: 70,
-        pwa: 80,
-      };
-      const mockCategoryReport = {
-        performance: 70,
-        pwa: 79,
-        accessibility: 10,
-        'best-practices': 10,
-        seo: 10,
-      };
+  it('should return `false` if one or more target category index is below the thresholds', () => {
+    const threshold = {
+      performance: 70,
+      pwa: 80,
+    };
+    const mockCategoryReport = {
+      performance: 70,
+      pwa: 79,
+      accessibility: 10,
+      'best-practices': 10,
+      seo: 10,
+    };
 
-      const result = analyzeScore(mockCategoryReport, threshold);
+    const result = analyzeScore(mockCategoryReport, threshold);
 
-      expect(result).toEqual(false);
-    },
-  );
+    expect(result).toEqual(false);
+  });
 });
