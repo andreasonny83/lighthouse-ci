@@ -1,6 +1,6 @@
 {
   "name": "lighthouse-ci",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "description": "CLI implementation for running Lighthouse with any CI tool",
   "scripts": {
     "test": "npm run format && xo && jest",
@@ -54,7 +54,10 @@
       "jest"
     ],
     "rules": {
-      "max-params": ["error", 5]
+      "max-params": [
+        "error",
+        5
+      ]
     }
   },
   "author": "Andrea Sonny <andreasonny83@gmail.com>",
