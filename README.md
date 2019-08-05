@@ -6,6 +6,7 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/andreasonny83/lighthouse-ci/badge.svg?targetFile=package.json)](https://snyk.io/test/github/andreasonny83/lighthouse-ci?targetFile=package.json)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
+[![Codechecks](https://raw.githubusercontent.com/codechecks/docs/master/images/badges/badge-default.svg?sanitize=true)](https://codechecks.io)
 
 > A useful wrapper around Google Lighthouse CLI
 
@@ -21,23 +22,23 @@ $ npm install -g lighthouse-ci
 
 ## Table of Contents
 
-- [Lighthouse CI](#Lighthouse-CI)
-  - [Install](#Install)
-  - [Table of Contents](#Table-of-Contents)
-  - [Usage](#Usage)
-  - [CLI](#CLI)
-  - [Lighthouse flags](#Lighthouse-flags)
-    - [Chrome flags](#Chrome-flags)
-  - [Configuration](#Configuration)
-  - [Performance Budget](#Performance-Budget)
-      - [Option 1.](#Option-1)
-      - [Option 2.](#Option-2)
-      - [Option 3.](#Option-3)
-  - [How to](#How-to)
-    - [Test a page that requires authentication](#Test-a-page-that-requires-authentication)
-    - [Wait for post-load JavaScript to execute before ending a trace](#Wait-for-post-load-JavaScript-to-execute-before-ending-a-trace)
-  - [Contributors](#Contributors)
-  - [License](#License)
+- [Lighthouse CI](#lighthouse-ci)
+  - [Install](#install)
+  - [Table of Contents](#table-of-contents)
+  - [Usage](#usage)
+  - [CLI](#cli)
+  - [Lighthouse flags](#lighthouse-flags)
+    - [Chrome flags](#chrome-flags)
+  - [Configuration](#configuration)
+  - [Performance Budget](#performance-budget)
+      - [Option 1.](#option-1)
+      - [Option 2.](#option-2)
+      - [Option 3.](#option-3)
+  - [How to](#how-to)
+    - [Test a page that requires authentication](#test-a-page-that-requires-authentication)
+    - [Wait for post-load JavaScript to execute before ending a trace](#wait-for-post-load-javascript-to-execute-before-ending-a-trace)
+  - [Contributors](#contributors)
+  - [License](#license)
 
 ## Usage
 
