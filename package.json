@@ -20,6 +20,8 @@
     "update-notifier": "^3.0.1"
   },
   "devDependencies": {
+    "@codechecks/ban-deps-codecheck": "^0.1.1",
+    "@codechecks/client": "^0.1.5",
     "@types/jest": "^24.0.15",
     "@types/ora": "^3.2.0",
     "all-contributors-cli": "^6.8.1",
