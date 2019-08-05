@@ -1,4 +1,5 @@
-- name: ./bin/cli
+checks:
+  - name: ban-deps-codecheck
     options:
       - name: node-gyp
         reason: "No native modules please! They make installation much harder"
