@@ -16,6 +16,7 @@
     "lighthouse": "^5.1.0",
     "meow": "^5.0.0",
     "mkdirp": "^0.5.1",
+    "node-gyp": "^5.0.3",
     "ora": "^3.4.0",
     "pretty-ms": "^5.0.0",
     "rimraf": "^2.6.3",
@@ -29,7 +30,6 @@
     "all-contributors-cli": "^6.8.1",
     "chalk": "^2.4.2",
     "jest": "^24.8.0",
-    "node-gyp": "^5.0.3",
     "np": "^5.0.3",
     "prettier": "^1.18.2",
     "xo": "^0.24.0"
