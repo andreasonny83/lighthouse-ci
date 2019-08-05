@@ -3,6 +3,4 @@ checks:
     options:
       - name: node-gyp
         reason: "No native modules please! They make installation much harder"
-settings:
-  branches:
-    - master
+  - name: hello-world-codecheck
