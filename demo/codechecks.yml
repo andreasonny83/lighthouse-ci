@@ -1,0 +1,4 @@
+checks:
+  - name: ../bin/codecheck.js
+    options:
+      url: https://google.com

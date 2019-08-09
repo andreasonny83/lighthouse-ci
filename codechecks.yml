@@ -1,7 +1,0 @@
-- name: ./bin/cli
-    options:
-      - name: node-gyp
-        reason: "No native modules please! They make installation much harder"
-settings:
-  branches:
-    - master
