@@ -8,6 +8,7 @@ const {
   getOwnProps,
   convertToBudgetList,
   convertToResourceKey,
+  checkFlagsForPlugins
 } = require('../lib/helpers');
 
 jest.mock('rimraf');
