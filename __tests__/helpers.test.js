@@ -8,7 +8,7 @@ const {
   getOwnProps,
   convertToBudgetList,
   convertToResourceKey,
-  checkFlagsForPlugins
+  checkFlagsForPlugins,
 } = require('../lib/helpers');
 
 jest.mock('rimraf');
@@ -128,18 +128,18 @@ describe('helpers', () => {
 
   describe('checkFlagsForPlugins', () => {
     it('should convert plugins to an array, for passing into lighthouse', () => {
-      const correctedObj = { plugins: ["lighthouse-plugin-greenhouse"] };
-      const mockObj = { plugins: "lighthouse-plugin-greenhouse" };
+      const correctedObj = { plugins: ['lighthouse-plugin-greenhouse'] };
+      const mockObj = { plugins: 'lighthouse-plugin-greenhouse' };
 
       // Act
       const res = checkFlagsForPlugins(mockObj);
 
       // Assert
       expect(res).not.toBeNull();
-      expect(res.plugins).toEqual(correctedObj.plugins)
+      expect(res.plugins).toEqual(correctedObj.plugins);
       expect(res.plugins).toHaveLength(1);
-    })
-  })
+    });
+  });
 
   describe('getOwnProps', () => {
     it('should return all own props', () => {
