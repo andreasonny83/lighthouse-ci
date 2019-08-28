@@ -33,6 +33,8 @@ $ npm install -g lighthouse-ci
       - [Option 1.](#option-1)
       - [Option 2.](#option-2)
       - [Option 3.](#option-3)
+  - [Codechecks](#codechecks)
+    - [How to run Lighthouse-CI with Codechecks](#how-to-run-lighthouse-ci-with-codechecks)
   - [How to](#how-to)
     - [Test a page that requires authentication](#test-a-page-that-requires-authentication)
     - [Wait for post-load JavaScript to execute before ending a trace](#wait-for-post-load-javascript-to-execute-before-ending-a-trace)
@@ -202,6 +204,39 @@ Pass individual parameters via CLI
 ```sh
 $ lighthouse-ci https://example.com --report=reports --budget.counts.total=20  --budget.sizes.fonts=100000
 ```
+
+## Codechecks
+
+You can now easily integrate Lighthouse-CI as part of your automated CI with [codechecks.io](https://codechecks.io/).
+
+<img src="https://raw.githubusercontent.com/andreasonny83/lighthouse-ci/master/codechecks-01.png" width="700">
+
+<img src="https://raw.githubusercontent.com/andreasonny83/lighthouse-ci/master/codechecks-02.png" width="700">
+
+Read more about Codechecks on the [official project website](https://codechecks.io/)
+
+### How to run Lighthouse-CI with Codechecks
+
+```sh
+$ npm install --save-dev @codechecks/client @codechecks/lighthouse-keeper
+```
+
+Now, create a `codechecks.yml` (json is supported as well) file required for codechecks to automatically run against your project.
+
+`codechecks.yml:`
+
+```yml
+checks:
+  - name: lighthouse-keeper
+    options:
+      # just provide path to your build
+      buildPath: ./build
+      # or full url
+      # url: https://google.com
+  # ...
+```
+
+Read more from the official documentation from [https://github.com/codechecks/lighthouse-keeper](lighthouse-keeper).
 
 ## How to
 
