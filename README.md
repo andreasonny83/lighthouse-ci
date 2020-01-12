@@ -34,7 +34,6 @@ $ npm install -g lighthouse-ci
       - [Option 2.](#option-2)
       - [Option 3.](#option-3)
   - [Codechecks](#codechecks)
-    - [How to run Lighthouse-CI with Codechecks](#how-to-run-lighthouse-ci-with-codechecks)
   - [How to](#how-to)
     - [Test a page that requires authentication](#test-a-page-that-requires-authentication)
     - [Wait for post-load JavaScript to execute before ending a trace](#wait-for-post-load-javascript-to-execute-before-ending-a-trace)
@@ -209,13 +208,9 @@ $ lighthouse-ci https://example.com --report=reports --budget.counts.total=20  -
 
 You can now easily integrate Lighthouse-CI as part of your automated CI with [codechecks.io](https://codechecks.io/).
 
-<img src="https://raw.githubusercontent.com/andreasonny83/lighthouse-ci/master/codechecks-01.png" width="700">
+<img src="https://raw.githubusercontent.com/andreasonny83/lighthouse-ci/master/codechecks-01.png" width="48%"> <img src="https://raw.githubusercontent.com/andreasonny83/lighthouse-ci/master/codechecks-02.png" width="48%">
 
-<img src="https://raw.githubusercontent.com/andreasonny83/lighthouse-ci/master/codechecks-02.png" width="700">
-
-Read more about Codechecks on the [official project website](https://codechecks.io/)
-
-### How to run Lighthouse-CI with Codechecks
+**Running Lighthouse-CI with Codechecks**
 
 ```sh
 $ npm install --save-dev @codechecks/client @codechecks/lighthouse-keeper
@@ -236,7 +231,10 @@ checks:
   # ...
 ```
 
-Read more from the official documentation from [https://github.com/codechecks/lighthouse-keeper](lighthouse-keeper).
+Read more from the official documentation from [https://github.com/codechecks/lighthouse-keeper](https://github.com/codechecks/lighthouse-keeper).
+
+Read more about Codechecks on the [official project website](https://codechecks.io/)
+
 
 ## How to
 
