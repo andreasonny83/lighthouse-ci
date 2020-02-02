@@ -34,6 +34,7 @@ $ npm install -g lighthouse-ci
       - [Option 2.](#option-2)
       - [Option 3.](#option-3)
   - [Codechecks](#codechecks)
+  - [Demo App](#demo-app)
   - [How to](#how-to)
     - [Test a page that requires authentication](#test-a-page-that-requires-authentication)
     - [Wait for post-load JavaScript to execute before ending a trace](#wait-for-post-load-javascript-to-execute-before-ending-a-trace)
@@ -235,6 +236,17 @@ Read more from the official documentation from [https://github.com/codechecks/li
 
 Read more about Codechecks on the [official project website](https://codechecks.io/)
 
+## Demo App
+
+This project contains a demo folder where a project as been created for demo purposes only.
+Once inside the `demo` folder, if you have Docker installed on your machine, you can simply launch the demo app inside a Docker container with `make demo`.
+
+If you just want to run the demo locally, make sure to install the node dependencies first with `npm install`,
+then run the demo with:
+
+```
+$ npm start
+```
 
 ## How to
 

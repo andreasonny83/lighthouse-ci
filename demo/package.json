@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prestart": "http-server > /dev/null &",
-    "start": "lighthouse-ci http://127.0.0.1:8080 --report",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "http-server",
+    "lighthouse": "lighthouse-ci http://127.0.0.1:8080 --report",
+    "start": "concurrently -r -s first -k \"npm run serve\" \"npm run lighthouse\""
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "lighthouse-ci": "^1.0.1",
-    "http-server": "^0.11.1"
+    "concurrently": "^5.1.0",
+    "http-server": "^0.12.1",
+    "lighthouse-ci": "^1.10.0"
   }
 }
