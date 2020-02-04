@@ -1,11 +1,10 @@
-.PHONY: default build run install dev
+.PHONY: demo build run dev
 
-# Commands for local development
 build:
 	docker build --rm -t sonny/lighthouse-demo .
 
 run:
-	docker run --rm -it -v ${PWD}:/demo sonny/lighthouse-demo npm start
+	docker run --rm sonny/lighthouse-demo npm start
 
 dev:
 	docker run -it --rm -v ${PWD}:/demo sonny/lighthouse-demo /bin/bash
