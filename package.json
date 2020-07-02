@@ -8,16 +8,19 @@
     "format": "prettier --write \"lib/**/*.{js,js}\"",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
-    "release": "np"
+    "release": "np",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
-    "chrome-launcher": "^0.11.1",
-    "lighthouse": "^5.1.0",
-    "meow": "^5.0.0",
-    "mkdirp": "^0.5.1",
+    "chrome-launcher": "^0.13.2",
+    "lighthouse": "^6.0.0",
+    "meow": "^6.1.0",
+    "mkdirp": "^0.5.2",
     "ora": "^3.4.0",
     "rimraf": "^2.6.3",
-    "update-notifier": "^3.0.1"
+    "update-notifier": "^4.0.0",
+    "snyk": "^1.359.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.15",
@@ -69,5 +72,6 @@
   "bugs": {
     "url": "https://github.com/andreasonny83/lighthouse-ci.git/issues"
   },
-  "homepage": "https://github.com/andreasonny83/lighthouse-ci.git#readme"
+  "homepage": "https://github.com/andreasonny83/lighthouse-ci.git#readme",
+  "snyk": true
 }
