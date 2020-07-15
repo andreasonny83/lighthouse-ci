@@ -19,8 +19,7 @@
     "mkdirp": "^0.5.5",
     "ora": "^3.4.0",
     "rimraf": "^2.6.3",
-    "update-notifier": "^4.0.0",
-    "snyk": "^1.359.0"
+    "update-notifier": "^4.0.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.15",
@@ -30,7 +29,8 @@
     "jest": "^24.8.0",
     "np": "^5.0.3",
     "prettier": "^1.18.2",
-    "xo": "^0.24.0"
+    "snyk": "^1.362.0",
+    "xo": "^0.32.1"
   },
   "keywords": [
     "devtools",
