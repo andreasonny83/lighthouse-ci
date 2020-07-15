@@ -4,6 +4,7 @@
   "description": "CLI implementation for running Lighthouse with any CI tool",
   "scripts": {
     "test": "npm run format && xo && jest",
+    "xo": "xo",
     "test:watch": "jest --watchAll",
     "format": "prettier --write \"lib/**/*.{js,js}\"",
     "contributors:add": "all-contributors add",
@@ -47,7 +48,7 @@
     "LICENSE"
   ],
   "engines": {
-    "node": ">=6"
+    "node": ">=8.3.0"
   },
   "xo": {
     "prettier": true,
@@ -60,7 +61,8 @@
       "max-params": [
         "error",
         5
-      ]
+      ],
+      "unicorn/no-reduce": 0
     }
   },
   "author": "Andrea Sonny <andreasonny83@gmail.com>",

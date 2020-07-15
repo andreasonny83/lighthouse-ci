@@ -1,3 +1,10 @@
+/**
+ *  Copyright (c) 2018-2020 AndreaSonny <andreasonny83@gmail.com> (https://github.com/andreasonny83)
+ *
+ * This software is released under the MIT License.
+ * https://opensource.org/licenses/MIT
+ */
+
 const mkdirp = require('mkdirp');
 const rimraf = require('rimraf');
 const {
@@ -21,10 +28,10 @@ describe('helpers', () => {
   describe('clean', () => {
     it('should return a promise', () => {
       // Arrange
-      const res = clean();
+      const response = clean();
 
       // Assert
-      expect(res).toBeInstanceOf(Promise);
+      expect(response).toBeInstanceOf(Promise);
     });
 
     it('should reject the promise if an error if present', () => {
@@ -33,10 +40,10 @@ describe('helpers', () => {
       rimraf.mockImplementation((target, callback) => callback(expectedError));
 
       // Act
-      const res = clean();
+      const response = clean();
 
       // Assert
-      expect(res).rejects.toEqual(expectedError);
+      expect(response).rejects.toEqual(expectedError);
     });
 
     it('should try to remove a "lighthouse" folder', () => {
@@ -48,10 +55,10 @@ describe('helpers', () => {
       });
 
       // Act
-      const res = clean();
+      const response = clean();
 
       // Assert
-      expect(res).resolves.toEqual();
+      expect(response).resolves.toEqual();
       expect(rimraf).toHaveBeenCalledWith(expectedFolderName, expect.any(Function));
     });
   });
@@ -59,10 +66,10 @@ describe('helpers', () => {
   describe('createDir', () => {
     it('should return a promise', () => {
       // Arrange
-      const res = createDir();
+      const response = createDir();
 
       // Assert
-      expect(res).toBeInstanceOf(Promise);
+      expect(response).toBeInstanceOf(Promise);
     });
 
     it('should reject the promise if an error if present', () => {
@@ -71,10 +78,10 @@ describe('helpers', () => {
       mkdirp.mockImplementation((target, callback) => callback(expectedError));
 
       // Act
-      const res = createDir();
+      const response = createDir();
 
       // Assert
-      expect(res).rejects.toEqual(expectedError);
+      expect(response).rejects.toEqual(expectedError);
     });
 
     it('should try to create a "lighthouse" folder', () => {
@@ -86,10 +93,10 @@ describe('helpers', () => {
       });
 
       // Act
-      const res = createDir();
+      const response = createDir();
 
       // Assert
-      expect(res).resolves.toEqual();
+      expect(response).resolves.toEqual();
       expect(mkdirp).toHaveBeenCalledWith(expectedFolderName, expect.any(Function));
     });
   });
@@ -101,10 +108,10 @@ describe('helpers', () => {
       const mockFlags = { score: expectedScore };
 
       // Act
-      const res = scoreReducer(mockFlags);
+      const response = scoreReducer(mockFlags);
 
       // Assert
-      expect(res).toEqual(expectedScore);
+      expect(response).toEqual(expectedScore);
     });
 
     it('should return an object of only known flags', () => {
@@ -115,13 +122,13 @@ describe('helpers', () => {
         test: '10',
       };
       const mockScores = ['performance', 'pwa', 'accessibility'];
-      const expectedRes = { accessibility: '90', performance: '10' };
+      const expectedResponse = { accessibility: '90', performance: '10' };
 
       // Act
-      const res = scoreReducer(mockFlags, mockScores);
+      const response = scoreReducer(mockFlags, mockScores);
 
       // Assert
-      expect(res).toEqual(expectedRes);
+      expect(response).toEqual(expectedResponse);
     });
   });
 
@@ -129,15 +136,15 @@ describe('helpers', () => {
     it('should return all own props', () => {
       // Arrange
       const expectedProp = 'foo';
-      const mockObj = { foo: 0 };
+      const mockObject = { foo: 0 };
 
       // Act
-      const res = getOwnProps(mockObj);
+      const response = getOwnProps(mockObject);
 
       // Assert
-      expect(res).not.toBeNull();
-      expect(res).toContain(expectedProp);
-      expect(res).toHaveLength(1);
+      expect(response).not.toBeNull();
+      expect(response).toContain(expectedProp);
+      expect(response).toHaveLength(1);
     });
 
     it('should not return inherited props', () => {
@@ -153,12 +160,12 @@ describe('helpers', () => {
       Func.prototype.bar = 2;
 
       // Act
-      const res = getOwnProps(input);
+      const response = getOwnProps(input);
 
       // Assert
-      expect(res).not.toBeNull();
-      expect(res).toContain(expectedProp);
-      expect(res).toHaveLength(1);
+      expect(response).not.toBeNull();
+      expect(response).toContain(expectedProp);
+      expect(response).toHaveLength(1);
     });
   });
 
@@ -168,10 +175,10 @@ describe('helpers', () => {
       const expectedConfig = { foo: 1, bar: 2 };
 
       // Act
-      const res = createDefaultConfig(expectedConfig);
+      const response = createDefaultConfig(expectedConfig);
 
       // Assert
-      expect(res).toEqual(expectedConfig);
+      expect(response).toEqual(expectedConfig);
     });
 
     it('should set `extends` and `settings`', () => {
@@ -179,11 +186,11 @@ describe('helpers', () => {
       const expectedExtends = 'lighthouse:default';
 
       // Act
-      const res = createDefaultConfig();
+      const response = createDefaultConfig();
 
       // Assert
-      expect(res.extends).toEqual(expectedExtends);
-      expect(res.settings).not.toBeNull();
+      expect(response.extends).toEqual(expectedExtends);
+      expect(response.settings).not.toBeNull();
     });
   });
 
@@ -204,11 +211,11 @@ describe('helpers', () => {
       const input = { script: 1, total: 2 };
 
       // Act
-      const res = convertToBudgetList(input);
+      const response = convertToBudgetList(input);
 
       // Assert
-      expect(res).toHaveLength(2);
-      expect(res).toEqual(expected);
+      expect(response).toHaveLength(2);
+      expect(response).toEqual(expected);
     });
   });
 
@@ -220,10 +227,10 @@ describe('helpers', () => {
       const input = 'sizes';
 
       // Act
-      const res = convertToResourceKey(input);
+      const response = convertToResourceKey(input);
 
       // Assert
-      expect(res).toEqual(expected);
+      expect(response).toEqual(expected);
     });
   });
 });
