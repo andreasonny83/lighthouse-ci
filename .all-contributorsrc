@@ -86,6 +86,16 @@
         "code",
         "ideas"
       ]
+    },
+    {
+      "login": "marcschaller",
+      "name": "Marc Schaller",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/31402947?v=4",
+      "profile": "https://github.com/marcschaller",
+      "contributions": [
+        "bug",
+        "code"
+      ]
     }
   ],
   "commitConvention": "none"
