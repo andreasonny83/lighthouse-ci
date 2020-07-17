@@ -96,6 +96,16 @@
         "bug",
         "code"
       ]
+    },
+    {
+      "login": "Remi-p",
+      "name": "Rémi Perrot",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/6367611?v=4",
+      "profile": "https://github.com/Remi-p",
+      "contributions": [
+        "bug",
+        "code"
+      ]
     }
   ],
   "commitConvention": "none"

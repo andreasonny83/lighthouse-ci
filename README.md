@@ -314,6 +314,7 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds
   <tr>
     <td align="center"><a href="https://asmagin.com/"><img src="https://avatars3.githubusercontent.com/u/1803342?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Alex Smagin</b></sub></a><br /><a href="https://github.com/andreasonny83/lighthouse-ci/commits?author=asmagin" title="Code">💻</a> <a href="#ideas-asmagin" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/marcschaller"><img src="https://avatars2.githubusercontent.com/u/31402947?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Marc Schaller</b></sub></a><br /><a href="https://github.com/andreasonny83/lighthouse-ci/issues?q=author%3Amarcschaller" title="Bug reports">🐛</a> <a href="https://github.com/andreasonny83/lighthouse-ci/commits?author=marcschaller" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Remi-p"><img src="https://avatars3.githubusercontent.com/u/6367611?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rémi Perrot</b></sub></a><br /><a href="https://github.com/andreasonny83/lighthouse-ci/issues?q=author%3ARemi-p" title="Bug reports">🐛</a> <a href="https://github.com/andreasonny83/lighthouse-ci/commits?author=Remi-p" title="Code">💻</a></td>
   </tr>
 </table>
 
