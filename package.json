@@ -47,6 +47,9 @@
     "README.md",
     "LICENSE"
   ],
+  "jest": {
+    "testPathIgnorePatterns": [".history"]
+  },
   "engines": {
     "node": ">=10.13"
   },
