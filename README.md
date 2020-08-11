@@ -78,6 +78,7 @@ $ lighthouse-ci --help
     --best-practices=<threshold>  Specify a minimal best-practice score for the CI to pass
     --seo=<threshold>             Specify a minimal seo score for the CI to pass
     --budget.<counts|sizes>.<type>    Specify individual budget threshold (if --budget-path not set)
+    --chromium-fallback           If no Chrome installations are found download and use Chromium browser instead
 ```
 
 ## Lighthouse flags

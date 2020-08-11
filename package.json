@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "chrome-launcher": "^0.13.2",
+    "chromium": "^3.0.1",
     "lighthouse": "^6.0.0",
     "meow": "^6.1.0",
     "mkdirp": "^0.5.5",

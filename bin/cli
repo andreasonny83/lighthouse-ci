@@ -107,6 +107,10 @@ const cli = meow(
       budget: {
         type: 'string',
       },
+      chromiumFallback: {
+        type: 'boolean',
+        default: false,
+      },
     },
   },
 );
@@ -126,6 +130,7 @@ const {
   bestPractices,
   seo,
   failOnBudgets,
+  chromiumFallback,
   ...lighthouseFlags
 } = cli.flags;
 
@@ -145,6 +150,7 @@ const flags = {
   }),
   seo,
   failOnBudgets,
+  chromiumFallback,
 };
 
 function init(args, chromeFlags) {
