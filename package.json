@@ -75,7 +75,7 @@
     "url": "git+https://github.com/andreasonny83/lighthouse-ci.git"
   },
   "bugs": {
-    "url": "https://github.com/andreasonny83/lighthouse-ci.git/issues"
+    "url": "https://github.com/andreasonny83/lighthouse-ci/issues"
   },
   "homepage": "https://github.com/andreasonny83/lighthouse-ci.git#readme",
   "snyk": true
