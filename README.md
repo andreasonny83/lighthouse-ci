@@ -79,6 +79,7 @@ $ lighthouse-ci --help
     --seo=<threshold>             Specify a minimal seo score for the CI to pass
     --budget.<counts|sizes>.<type>    Specify individual budget threshold (if --budget-path not set)
     --chromium-fallback           If no Chrome installations are found download and use Chromium browser instead
+    --chromium-force              Always download and use Chromium browser.
 ```
 
 ## Lighthouse flags

@@ -55,6 +55,8 @@ const cli = meow(
     --seo=<threshold>               Specify a minimal seo score for the CI to pass
     --fail-on-budgets               Specify CI should fail if budgets are exceeded
     --budget.<counts|sizes>.<type>  Specify individual budget threshold (if --budget-path not set)
+    --chromium-fallback             If no Chrome installations are found download and use Chromium browser instead
+    --chromium-force                Always download and use Chromium browser.
 
   In addition to listed "lighthouse-ci" configuration flags, it is also possible to pass any native "lighthouse" flag
   To see the full list of available flags, please refer to the official Google Lighthouse documentation at https://github.com/GoogleChrome/lighthouse#cli-options
@@ -111,6 +113,10 @@ const cli = meow(
         type: 'boolean',
         default: false,
       },
+      chromiumForce: {
+        type: 'boolean',
+        default: false,
+      },
     },
   },
 );
@@ -131,6 +137,7 @@ const {
   seo,
   failOnBudgets,
   chromiumFallback,
+  chromiumForce,
   ...lighthouseFlags
 } = cli.flags;
 
@@ -151,6 +158,7 @@ const flags = {
   seo,
   failOnBudgets,
   chromiumFallback,
+  chromiumForce,
 };
 
 function init(args, chromeFlags) {
