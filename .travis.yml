@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - '10.13'
+  - '10.16'
 before_script:
   - export DISPLAY=:99.0
   - export CHROME_PATH="$(pwd)/chrome-linux/chrome"
