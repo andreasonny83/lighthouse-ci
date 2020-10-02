@@ -151,7 +151,7 @@ describe('helpers', () => {
       // Arrange
       const expectedProp = 'foo';
 
-      const Func = function() {
+      const Func = function () {
         this.foo = 1;
       };
 
