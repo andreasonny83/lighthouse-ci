@@ -14,13 +14,13 @@
     "prepare": "npm run snyk-protect"
   },
   "dependencies": {
-    "chrome-launcher": "^0.13.2",
-    "lighthouse": "^6.0.0",
-    "meow": "^6.1.0",
-    "mkdirp": "^0.5.5",
-    "ora": "^3.4.0",
-    "rimraf": "^2.6.3",
-    "update-notifier": "^4.0.0"
+    "chrome-launcher": "^0.13.4",
+    "lighthouse": "^6.4.0",
+    "meow": "^7.1.1",
+    "mkdirp": "^1.0.4",
+    "ora": "^5.1.0",
+    "rimraf": "^3.0.2",
+    "update-notifier": "^5.0.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.14",
