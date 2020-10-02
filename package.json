@@ -23,15 +23,15 @@
     "update-notifier": "^4.0.0"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.15",
+    "@types/jest": "^26.0.14",
     "@types/ora": "^3.2.0",
-    "all-contributors-cli": "^6.8.1",
-    "chalk": "^2.4.2",
-    "jest": "^24.8.0",
-    "np": "^5.0.3",
-    "prettier": "^1.18.2",
-    "snyk": "^1.362.0",
-    "xo": "^0.32.1"
+    "all-contributors-cli": "^6.17.4",
+    "chalk": "^4.1.0",
+    "jest": "^26.4.2",
+    "np": "^6.5.0",
+    "prettier": "^2.1.2",
+    "snyk": "^1.406.0",
+    "xo": "^0.33.1"
   },
   "keywords": [
     "devtools",
@@ -48,7 +48,7 @@
     "LICENSE"
   ],
   "engines": {
-    "node": ">=10.13"
+    "node": ">=10"
   },
   "xo": {
     "prettier": true,
