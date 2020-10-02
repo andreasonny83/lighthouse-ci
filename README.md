@@ -1,5 +1,5 @@
 # Lighthouse CI
-[![Build Status](https://travis-ci.com/andreasonny83/lighthouse-ci.svg?branch=master)](https://travis-ci.com/andreasonny83/lighthouse-ci)
+[![Build Status](https://travis-ci.com/andreasonny83/lighthouse-ci.svg?branch=main)](https://travis-ci.com/andreasonny83/lighthouse-ci)
 [![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors)
 [![npm version](https://badge.fury.io/js/lighthouse-ci.svg)](https://badge.fury.io/js/lighthouse-ci)
 [![npm](https://img.shields.io/npm/dt/lighthouse-ci.svg)](https://www.npmjs.com/package/lighthouse-ci)
@@ -9,9 +9,9 @@
 
 > A useful wrapper around Google Lighthouse CLI
 
-<img alt="Lighthouse CI logo" src="https://raw.githubusercontent.com/andreasonny83/lighthouse-ci/master/logo.png" width="800px">
+<img alt="Lighthouse CI logo" src="https://raw.githubusercontent.com/andreasonny83/lighthouse-ci/main/logo.png" width="800px">
 
-<img src="https://raw.githubusercontent.com/andreasonny83/lighthouse-ci/master/lighthouse-cli.gif" width="700">
+<img src="https://raw.githubusercontent.com/andreasonny83/lighthouse-ci/main/lighthouse-cli.gif" width="700">
 
 ## Install
 
@@ -209,7 +209,7 @@ $ lighthouse-ci https://example.com --report=reports --budget.counts.total=20  -
 
 You can now easily integrate Lighthouse-CI as part of your automated CI with [codechecks.io](https://codechecks.io/).
 
-<img src="https://raw.githubusercontent.com/andreasonny83/lighthouse-ci/master/codechecks-01.png" width="48%"> <img src="https://raw.githubusercontent.com/andreasonny83/lighthouse-ci/master/codechecks-02.png" width="48%">
+<img src="https://raw.githubusercontent.com/andreasonny83/lighthouse-ci/main/codechecks-01.png" width="48%"> <img src="https://raw.githubusercontent.com/andreasonny83/lighthouse-ci/main/codechecks-02.png" width="48%">
 
 **Running Lighthouse-CI with Codechecks**
 
