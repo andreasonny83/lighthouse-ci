@@ -16,11 +16,9 @@ const chalk = require('chalk');
 const updateNotifier = require('update-notifier');
 const pkg = require('../package.json');
 
-const { scoreReducer } = require('../lib/helpers');
-const { getScores, getChromeFlags } = require('../lib/config');
+const { getChromeFlags } = require('../lib/config');
 const lighthouseReporter = require('../lib/lighthouse-reporter');
-const analyzeScore = require('../lib/score-analyzer');
-const analyzeBudgets = require('../lib/budgets-analyzer');
+const { calculateResults } = require('../lib/calculate-results');
 
 const spinner = ora({
   color: 'yellow',
@@ -192,7 +190,7 @@ Promise.resolve()
 
     if (!silent) {
       for (const category in categoryReport) {
-        if (!categoryReport[category]) {
+        if (typeof categoryReport[category] === 'undefined') {
           continue;
         }
 
@@ -213,30 +211,26 @@ Promise.resolve()
     return { categoryReport, budgetsReport };
   })
   .then(({ categoryReport, budgetsReport }) => {
-    let thresholds = scoreReducer(flags, getScores());
+    const result = calculateResults(flags, categoryReport, budgetsReport, failOnBudgets);
 
-    thresholds =
-      Object.keys(thresholds).length === 0
-        ? {
-            score: 100,
-          }
-        : thresholds;
-
-    if (thresholds && Object.keys(thresholds).length !== 0) {
-      const isScorePassing = analyzeScore(categoryReport, thresholds);
-      const areBudgetsPassing = analyzeBudgets(budgetsReport, failOnBudgets);
-
-      if (isScorePassing && areBudgetsPassing) {
-        console.log(chalk.green('All checks are passing. 🎉\n'));
-        return process.exit(0);
-      }
+    if (result.passed) {
+      console.log(chalk.green('\nAll checks are passing. 🎉\n'));
+      return process.exit(0);
     }
 
-    console.log(chalk.red('Failed. ❌\n'));
+    console.log(chalk.red('\nFailed. ❌'));
+
+    if (result.score === false) {
+      throw new Error('Target score not reached.');
+    }
+    if (result.budget === false) {
+      throw new Error('Target budget not reached.');
+    }
+
     throw new Error('lighthouse-ci test failed.');
   })
-  .catch(err => {
+  .catch((err) => {
     spinner.stop();
-    console.log(chalk.red(err));
+    console.log(chalk.red(err), '\n');
     return process.exit(1);
   });
