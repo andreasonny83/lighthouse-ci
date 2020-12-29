@@ -20,6 +20,7 @@ coverage
 # Lighthouse
 /Lighthouse
 /demo/Lighthouse
+budget.json
 
 # nyc test coverage
 .nyc_output

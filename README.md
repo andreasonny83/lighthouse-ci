@@ -29,10 +29,12 @@ $ npm install -g lighthouse-ci
   - [Lighthouse flags](#lighthouse-flags)
     - [Chrome flags](#chrome-flags)
   - [Configuration](#configuration)
-  - [Performance Budget](#performance-budget)
+  - [Budgets](#budgets)
       - [Option 1.](#option-1)
       - [Option 2.](#option-2)
       - [Option 3.](#option-3)
+    - [Performance Budget](#performance-budget)
+    - [Timing Budget](#timing-budget)
   - [Codechecks](#codechecks)
   - [Demo App](#demo-app)
   - [How to](#how-to)
@@ -64,20 +66,24 @@ $ lighthouse-ci --help
     $ lighthouse-ci https://example.com --report=folder --config-path=configs.json
 
   Options
-    -s, --silent                  Run Lighthouse without printing report log
-    --report=<path>               Generate an HTML report inside a specified folder
-    --filename=<filename>         Specify the name of the generated HTML report file (requires --report)
-    -json, --jsonReport           Generate JSON report in addition to HTML (requires --report)
-    --config-path                 The path to the Lighthouse config JSON (read more here: https://github.com/GoogleChrome/lighthouse/blob/master/docs/configuration.md)
-    --budget-path                 The path to the Lighthouse budgets config JSON (read more here: https://developers.google.com/web/tools/lighthouse/audits/budgets)
-    --score=<threshold>           Specify a score threshold for the CI to pass
-    --performance=<threshold>     Specify a minimal performance score for the CI to pass
-    --pwa=<threshold>             Specify a minimal pwa score for the CI to pass
-    --accessibility=<threshold>   Specify a minimal accessibility score for the CI to pass
-    --best-practice=<threshold>   [DEPRECATED] Use best-practices instead
-    --best-practices=<threshold>  Specify a minimal best-practice score for the CI to pass
-    --seo=<threshold>             Specify a minimal seo score for the CI to pass
-    --budget.<counts|sizes>.<type>    Specify individual budget threshold (if --budget-path not set)
+    -s, --silent                    Run Lighthouse without printing report log
+    --report=<path>                 Generate an HTML report inside a specified folder
+    --filename=<filename>           Specify the name of the generated HTML report file (requires --report)
+    -json, --jsonReport             Generate JSON report in addition to HTML (requires --report)
+    --config-path                   The path to the Lighthouse config JSON (read more here: https://github.com/GoogleChrome/lighthouse/blob/master/docs/configuration.md)
+    --budget-path                   The path to the Lighthouse budgets config JSON (read more here: https://developers.google.com/web/tools/lighthouse/audits/budgets)
+    --score=<threshold>             Specify a score threshold for the CI to pass
+    --performance=<threshold>       Specify a minimal performance score for the CI to pass
+    --pwa=<threshold>               Specify a minimal pwa score for the CI to pass
+    --accessibility=<threshold>     Specify a minimal accessibility score for the CI to pass
+    --best-practice=<threshold>     [DEPRECATED] Use best-practices instead
+    --best-practices=<threshold>    Specify a minimal best-practice score for the CI to pass
+    --seo=<threshold>               Specify a minimal seo score for the CI to pass
+    --fail-on-budgets               Specify CI should fail if budgets are exceeded
+    --budget.<counts|sizes>.<type>  Specify individual budget threshold (if --budget-path not set)
+
+  In addition to listed "lighthouse-ci" configuration flags, it is also possible to pass any native "lighthouse" flag
+  To see the full list of available flags, please refer to the official Google Lighthouse documentation at https://github.com/GoogleChrome/lighthouse#cli-options
 ```
 
 ## Lighthouse flags
@@ -149,10 +155,10 @@ $ lighthouse-ci https://example.com --report=reports --config-path=config.json
 
 The generated report inside `reports` folder will follow the custom configuration listed under the `config.json` file.
 
-## Performance Budget
+## Budgets
 
-Lighthouse CI allows you to pass a performance budget configuration file (see [Lighthouse Budgets](https://developers.google.com/web/tools/lighthouse/audits/budgets)).
-There are several options to pass performance budget configs:
+Lighthouse CI allows you to pass a budget configuration file (see [Lighthouse Budgets](https://developers.google.com/web/tools/lighthouse/audits/budgets)).
+There are several options to pass a budget config:
 
 #### Option 1.
 Add configurations to your `config.json` file like and use instructions above.
@@ -164,11 +170,9 @@ Add configurations to your `config.json` file like and use instructions above.
       {
         "resourceCounts": [
           { "resourceType": "total", "budget": 10 },
-          ...
         ],
         "resourceSizes": [
           { "resourceType": "total", "budget": 100 },
-          ...
         ]
       }
     ]
@@ -182,11 +186,9 @@ Generate `budget.json` with content like:
   {
     "resourceCounts": [
       { "resourceType": "total", "budget": 10 },
-      ...
     ],
     "resourceSizes": [
       { "resourceType": "total", "budget": 100 },
-      ...
     ]
   }
 ]
@@ -203,6 +205,64 @@ Pass individual parameters via CLI
 
 ```sh
 $ lighthouse-ci https://example.com --report=reports --budget.counts.total=20  --budget.sizes.fonts=100000
+```
+
+### Performance Budget
+
+Performance budgets can be specified inside your [budget configuration file)(#budgets).
+
+You can specify any available [performance budget](https://github.com/GoogleChrome/lighthouse/blob/master/docs/performance-budgets.md#budgetjson) like in the following example
+
+```json
+[
+  {
+    "path": "/*",
+    "resourceSizes": [
+      {
+        "resourceType": "script",
+        "budget": 400000
+      },
+      {
+        "resourceType": "total",
+        "budget": 5050
+      }
+    ],
+    "resourceCounts": [
+      {
+        "resourceType": "total",
+        "budget": 95
+      },
+      {
+        "resourceType": "third-party",
+        "budget": 55
+      }
+    ]
+  }
+]
+```
+
+### Timing Budget
+
+Timing budgets can be specified inside your [budget configuration file)(#budgets).
+
+You can specify any available [timing budget](https://github.com/GoogleChrome/lighthouse/blob/master/docs/performance-budgets.md#timing-budgets) like in the following example
+
+```json
+[
+  {
+    "path": "/*",
+    "timings": [
+      {
+        "metric": "interactive",
+        "budget": 100
+      },
+      {
+        "metric": "first-meaningful-paint",
+        "budget": 100
+      }
+    ]
+  }
+]
 ```
 
 ## Codechecks
