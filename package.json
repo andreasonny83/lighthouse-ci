@@ -3,20 +3,21 @@
   "version": "1.12.0",
   "description": "CLI implementation for running Lighthouse with any CI tool",
   "scripts": {
-    "test": "npm run format && xo && jest",
+    "test": "npm run format && xo && jest --detectOpenHandles",
     "xo": "xo",
     "test:watch": "jest --watchAll --detectOpenHandles",
-    "format": "prettier --write \"**/*.{js,js}\" \"bin/cli\"",
+    "format": "prettier --write \"**/*.{js,js}\"",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
     "release": "np",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
   },
+  "type": "commonjs",
   "dependencies": {
     "chrome-launcher": "^0.14.0",
     "lighthouse": "^8.1.0",
-    "meow": "^10.1.0",
+    "meow": "^9.0.0",
     "mkdirp": "^1.0.4",
     "ora": "^5.4.0",
     "rimraf": "^3.0.2",
@@ -31,7 +32,7 @@
     "np": "^7.5.0",
     "prettier": "^2.3.2",
     "snyk": "^1.660.0",
-    "xo": "^0.42.0"
+    "xo": "~0.36.0"
   },
   "keywords": [
     "devtools",
@@ -39,7 +40,7 @@
     "ci"
   ],
   "bin": {
-    "lighthouse-ci": "bin/cli"
+    "lighthouse-ci": "bin/cli.js"
   },
   "files": [
     "lib",

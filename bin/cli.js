@@ -7,7 +7,6 @@
  * https://opensource.org/licenses/MIT
  */
 
-'use strict';
 const fs = require('fs');
 const path = require('path');
 const meow = require('meow');
@@ -145,31 +144,33 @@ const flags = {
   failOnBudgets,
 };
 
-function init(args, chromeFlags) {
+async function init(args, chromeFlags) {
   const testUrl = args[0];
 
   // Run Google Lighthouse
-  return lighthouseReporter(testUrl, flags, chromeFlags, lighthouseFlags).then(
-    async ({ categoryReport, budgetsReport, htmlReport, jsonReport }) => {
-      const { silent } = flags;
-
-      if (flags.report) {
-        const outputPath = path.resolve(flags.report, flags.filename);
-        await fs.writeFileSync(outputPath, htmlReport);
-
-        if (flags.jsonReport && jsonReport) {
-          const jsonReportPath = outputPath.replace(/\.[^\.]+$/, '.json');
-          await fs.writeFileSync(jsonReportPath, jsonReport);
-        }
-      }
-
-      return {
-        categoryReport,
-        budgetsReport,
-        silent,
-      };
-    },
+  const { categoryReport, budgetsReport, htmlReport, jsonReport } = await lighthouseReporter(
+    testUrl,
+    flags,
+    chromeFlags,
+    lighthouseFlags,
   );
+  const { silent } = flags;
+
+  if (flags.report) {
+    const outputPath = path.resolve(flags.report, flags.filename);
+    await fs.writeFileSync(outputPath, htmlReport);
+
+    if (flags.jsonReport && jsonReport) {
+      const jsonReportPath = outputPath.replace(/\.[^.]+$/, '.json');
+      await fs.writeFileSync(jsonReportPath, jsonReport);
+    }
+  }
+
+  return {
+    categoryReport,
+    budgetsReport,
+    silent,
+  };
 }
 
 Promise.resolve()
@@ -223,14 +224,15 @@ Promise.resolve()
     if (result.score === false) {
       throw new Error('Target score not reached.');
     }
+
     if (result.budget === false) {
       throw new Error('Target budget not reached.');
     }
 
     throw new Error('lighthouse-ci test failed.');
   })
-  .catch((err) => {
+  .catch((error) => {
     spinner.stop();
-    console.log(chalk.red(err), '\n');
+    console.log(chalk.red(error), '\n');
     return process.exit(1);
   });
