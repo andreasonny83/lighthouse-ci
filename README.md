@@ -9,6 +9,11 @@
 
 > A useful wrapper around Google Lighthouse CLI
 
+## NOTE
+
+#### Node v12 is now the minimum required version starting from Lighthouse CI v.1.13.0
+
+
 <img alt="Lighthouse CI logo" src="https://raw.githubusercontent.com/andreasonny83/lighthouse-ci/main/logo.png" width="800px">
 
 <img src="https://raw.githubusercontent.com/andreasonny83/lighthouse-ci/main/lighthouse-cli.gif" width="700">
@@ -22,6 +27,8 @@ $ npm install -g lighthouse-ci
 ## Table of Contents
 
 - [Lighthouse CI](#lighthouse-ci)
+  - [NOTE](#note)
+      - [Node v12 is now the minimum required version starting from Lighthouse CI v.1.13.0](#node-v12-is-now-the-minimum-required-version-starting-from-lighthouse-ci-v1130)
   - [Install](#install)
   - [Table of Contents](#table-of-contents)
   - [Usage](#usage)
