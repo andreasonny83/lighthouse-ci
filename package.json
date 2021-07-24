@@ -5,8 +5,8 @@
   "scripts": {
     "test": "npm run format && xo && jest",
     "xo": "xo",
-    "test:watch": "jest --watchAll",
-    "format": "prettier --write \"lib/**/*.{js,js}\"",
+    "test:watch": "jest --watchAll --detectOpenHandles",
+    "format": "prettier --write \"**/*.{js,js}\" \"bin/cli\"",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
     "release": "np",
@@ -48,7 +48,7 @@
     "LICENSE"
   ],
   "engines": {
-    "node": ">=10"
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   },
   "xo": {
     "prettier": true,

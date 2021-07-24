@@ -1,8 +1,9 @@
 const writeReport = require('../lib/lighthouse-reporter');
 
 describe('Reporter', () => {
+  jest.setTimeout(20000); // Allows more time to run all tests
+
   it('should launch Chrome and generate a report', async () => {
-    jest.setTimeout(20000); // Allows more time to run all tests
     const result = await writeReport('http://example.com/');
     expect(result).toEqual(
       expect.objectContaining({
