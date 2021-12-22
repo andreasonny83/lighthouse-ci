@@ -1,4 +1,4 @@
-const writeReport = require('../lib/lighthouse-reporter');
+const writeReport = require('../lib/lighthouse-reporter.js');
 
 describe('Reporter', () => {
   jest.setTimeout(20000); // Allows more time to run all tests

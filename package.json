@@ -1,6 +1,6 @@
 {
   "name": "lighthouse-ci",
-  "version": "1.13.1",
+  "version": "1.14.0",
   "description": "CLI implementation for running Lighthouse with any CI tool",
   "scripts": {
     "test": "npm run format && xo && jest --detectOpenHandles",
@@ -15,24 +15,24 @@
   },
   "type": "commonjs",
   "dependencies": {
-    "chrome-launcher": "^0.14.0",
-    "lighthouse": "^8.4.0",
+    "chalk": "^4.1.2",
+    "chrome-launcher": "^0.15.0",
+    "lighthouse": "^9.2.0",
     "meow": "^9.0.0",
     "mkdirp": "^1.0.4",
-    "ora": "^5.4.0",
+    "ora": "^5.4.1",
     "rimraf": "^3.0.2",
     "update-notifier": "^5.1.0"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.24",
+    "@types/jest": "^27.0.3",
     "@types/ora": "^3.2.0",
     "all-contributors-cli": "^6.20.0",
-    "chalk": "^4.1.1",
-    "jest": "^27.0.6",
-    "np": "^7.5.0",
-    "prettier": "^2.3.2",
-    "snyk": "^1.660.0",
-    "xo": "~0.36.0"
+    "jest": "^27.4.5",
+    "np": "^7.6.0",
+    "prettier": "^2.5.1",
+    "snyk": "^1.806.0",
+    "xo": "~0.39.1"
   },
   "keywords": [
     "devtools",
@@ -49,7 +49,7 @@
     "LICENSE"
   ],
   "engines": {
-    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+    "node": "^14.13.1 || >=16.0.0"
   },
   "xo": {
     "prettier": true,
@@ -63,7 +63,7 @@
         "error",
         5
       ],
-      "unicorn/no-reduce": 0
+      "unicorn/no-array-reduce": 0
     }
   },
   "author": "Andrea Sonny <andreasonny83@gmail.com>",

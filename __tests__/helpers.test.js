@@ -15,7 +15,7 @@ const {
   getOwnProps,
   convertToBudgetList,
   convertToResourceKey,
-} = require('../lib/helpers');
+} = require('../lib/helpers.js');
 
 jest.mock('rimraf');
 jest.mock('mkdirp');

@@ -15,9 +15,9 @@ const chalk = require('chalk');
 const updateNotifier = require('update-notifier');
 const pkg = require('../package.json');
 
-const { getChromeFlags } = require('../lib/config');
-const lighthouseReporter = require('../lib/lighthouse-reporter');
-const { calculateResults } = require('../lib/calculate-results');
+const { getChromeFlags } = require('../lib/config.js');
+const lighthouseReporter = require('../lib/lighthouse-reporter.js');
+const { calculateResults } = require('../lib/calculate-results.js');
 
 const spinner = ora({
   color: 'yellow',
