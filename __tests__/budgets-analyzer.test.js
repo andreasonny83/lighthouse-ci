@@ -5,7 +5,7 @@
  * https://opensource.org/licenses/MIT
  */
 
-const analyzeBudgets = require('../lib/budgets-analyzer');
+const analyzeBudgets = require('../lib/budgets-analyzer.js');
 
 describe('budgets-analyzer', () => {
   const processExit = process.exit;

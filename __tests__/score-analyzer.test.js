@@ -5,7 +5,7 @@
  * https://opensource.org/licenses/MIT
  */
 
-const analyzeScore = require('../lib/score-analyzer');
+const analyzeScore = require('../lib/score-analyzer.js');
 
 describe('score-analyzer', () => {
   const processExit = process.exit;
